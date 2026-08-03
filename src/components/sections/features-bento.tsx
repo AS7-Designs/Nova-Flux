@@ -51,26 +51,26 @@ const FEATURES_DATA: FeatureItem[] = [
     id: 1,
     illustration: AnalyticsIllustration,
     eyebrow: "Analytics",
-    title: "AI Sales Dashboard",
-    description: "Pipeline health, hot deals, and risks — surfaced by AI, at a glance.",
+    title: "Real-Time Network Analytics",
+    description: "Network growth, top rank earners, and commission volume — surfaced at a glance.",
     className: "lg:col-span-4",
     pattern: DotPattern,
   },
   {
     id: 2,
     illustration: TeamCollabIllustration,
-    eyebrow: "Enrichment",
-    title: "Contact Management",
-    description: "Auto-enriched contacts and smart segments. One source of truth.",
+    eyebrow: "Network",
+    title: "Distributor & Member Management",
+    description: "Referral link tracking, network trees, and automated member onboarding.",
     className: "lg:col-span-2",
     pattern: WavePatternBg,
   },
   {
     id: 3,
     illustration: SmartTaskIllustration,
-    eyebrow: "Workflows",
-    title: "Sales Pipeline Automation",
-    description: "Trigger emails, tasks, and handoffs from any signal in Flux — no code, no waiting.",
+    eyebrow: "Automation",
+    title: "Automated Commission & Payouts",
+    description: "Trigger multi-level commissions, rank advances, and eWallet transfers — no manual calculations.",
     className: "lg:col-span-6",
     pattern: LinesPatternBg,
   },
@@ -104,12 +104,12 @@ export default function FeaturesBento({ className, containerClass }: { className
       <div className={cn("container", containerClass)}>
         <div>
           <div className="mx-auto max-w-3xl space-y-3 lg:space-y-4 lg:text-center">
-            <Eyebrow className="justify-center lg:justify-center">Platform</Eyebrow>
+            <Eyebrow className="justify-center lg:justify-center">Platform Capabilities</Eyebrow>
             <h2 className="text-4xl tracking-tight lg:text-5xl">
-              Every part of your sales workflow, supercharged by AI.
+              Every part of your direct selling operation, simplified.
             </h2>
             <p className="text-muted-foreground text-lg leading-snug">
-              From first touch to closed-won, Flux turns every signal into the next best move.
+              From first referral to global payouts, NovaDirect turns network activity into automated growth.
             </p>
           </div>
 

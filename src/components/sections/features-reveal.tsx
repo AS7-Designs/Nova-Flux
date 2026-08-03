@@ -32,7 +32,7 @@ export default function FeaturesReveal({ className, containerClass }: { classNam
         <div className="flex flex-col items-center justify-center">
           <div className="flex w-full">
             <TextReveal className="items-center justify-center text-center text-pretty">
-              This is what an AI CRM should feel like. Smarter deals and a pipeline that runs itself.
+              This is what direct selling software should feel like. Smarter networks, automated commissions, and a platform that grows itself.
             </TextReveal>
           </div>
         </div>
