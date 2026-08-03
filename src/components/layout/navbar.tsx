@@ -1,6 +1,5 @@
 "use client";
-import ChartSquareLinear from "@iconify-react/solar/chart-square-linear";
-import UsersGroupRoundedLinear from "@iconify-react/solar/users-group-rounded-linear";
+import { BarChart3, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -29,31 +28,31 @@ export const NAV_LINKS = [
         label: "Your People",
         href: "/#layer-people",
         description: "Build, manage and grow your distributor network.",
-        icon: UsersGroupRoundedLinear,
+        icon: Users,
       },
       {
         label: "Your Products",
         href: "/#layer-products",
         description: "Physical, digital, memberships and subscriptions.",
-        icon: ChartSquareLinear,
+        icon: BarChart3,
       },
       {
         label: "Your Compensation",
         href: "/#layer-compensation",
         description: "Custom commission logic, multi-level & bonus models.",
-        icon: ChartSquareLinear,
+        icon: BarChart3,
       },
       {
         label: "Your Payments",
         href: "/#layer-payments",
         description: "Gateways, eWallets, payouts, and compliance.",
-        icon: ChartSquareLinear,
+        icon: BarChart3,
       },
       {
         label: "Your Control",
         href: "/#layer-control",
         description: "Unified admin panel and role-based access.",
-        icon: UsersGroupRoundedLinear,
+        icon: Users,
       },
     ],
   },

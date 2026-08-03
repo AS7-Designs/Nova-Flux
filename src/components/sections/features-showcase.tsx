@@ -1,11 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import UsersGroupRoundedLinear from "@iconify-react/solar/users-group-rounded-linear";
-import BagCheckLinear from "@iconify-react/solar/bag-check-linear";
-import ChartSquareLinear from "@iconify-react/solar/chart-square-linear";
-import CardLinear from "@iconify-react/solar/card-linear";
-import SettingsLinear from "@iconify-react/solar/settings-linear";
+import { Users, ShoppingBag, TrendingUp, CreditCard, Settings } from "lucide-react";
 
 import { Eyebrow } from "@/components/elements/eyebrow";
 import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
@@ -26,7 +22,7 @@ const layers = [
       "Team Structures and Network Visibility",
       "Rank and Performance Management",
     ],
-    icon: UsersGroupRoundedLinear,
+    icon: Users,
     color: "from-blue-500/10 to-indigo-500/5",
   },
   {
@@ -41,7 +37,7 @@ const layers = [
       "Bundles and Advanced Bundle Configuration",
       "Member Pricing and Retail Pricing",
     ],
-    icon: BagCheckLinear,
+    icon: ShoppingBag,
     color: "from-cyan-500/10 to-blue-500/5",
   },
   {
@@ -56,7 +52,7 @@ const layers = [
       "Bonus and Incentive Management",
       "Rank Advancement and Qualification Rules",
     ],
-    icon: ChartSquareLinear,
+    icon: TrendingUp,
     color: "from-indigo-500/10 to-purple-500/5",
   },
   {
@@ -71,7 +67,7 @@ const layers = [
       "Payout Request and Approval Workflows",
       "Tax Documentation and Compliance",
     ],
-    icon: CardLinear,
+    icon: CreditCard,
     color: "from-emerald-500/10 to-teal-500/5",
   },
   {
@@ -86,7 +82,7 @@ const layers = [
       "Real-Time Reporting and Analytics",
       "Commission Management and Adjustments",
     ],
-    icon: SettingsLinear,
+    icon: Settings,
     color: "from-blue-600/10 to-sky-500/5",
   },
 ];

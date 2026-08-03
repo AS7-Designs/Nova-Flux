@@ -1,11 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import UsersGroupRoundedLinear from "@iconify-react/solar/users-group-rounded-linear";
-import RefreshCircleLinear from "@iconify-react/solar/refresh-circle-linear";
-import BagCheckLinear from "@iconify-react/solar/bag-check-linear";
-import StarsMinimalisticLinear from "@iconify-react/solar/stars-minimalistic-linear";
-import Laptop3Linear from "@iconify-react/solar/laptop-3-linear";
+import { Users, RefreshCw, ShoppingBag, Award, Laptop } from "lucide-react";
 
 import { Eyebrow } from "@/components/elements/eyebrow";
 import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
@@ -14,35 +10,35 @@ import { cn } from "@/lib/utils";
 
 const AUDIENCES = [
   {
-    icon: UsersGroupRoundedLinear,
+    icon: Users,
     title: "Direct Selling Companies",
     description: "Building and managing a network of distributors or consultants with commission-based rewards.",
     badge: "MLM & Direct Sales",
     span: "lg:col-span-3",
   },
   {
-    icon: RefreshCircleLinear,
+    icon: RefreshCw,
     title: "Membership & Subscription Businesses",
     description: "Running a member program where referrals, renewals, and rewards need to work together seamlessly.",
     badge: "Subscriptions",
     span: "lg:col-span-3",
   },
   {
-    icon: BagCheckLinear,
+    icon: ShoppingBag,
     title: "Product & Retail Brands",
     description: "Selling through a network of representatives or brand partners with tiered commissions, member pricing, and structured rewards.",
     badge: "Commerce",
     span: "lg:col-span-2",
   },
   {
-    icon: StarsMinimalisticLinear,
+    icon: Award,
     title: "Ambassador & Referral Programs",
     description: "Rewarding customers, partners, or advocates who bring in new business through structured commission models.",
     badge: "Advocacy",
     span: "lg:col-span-2",
   },
   {
-    icon: Laptop3Linear,
+    icon: Laptop,
     title: "SaaS & Digital Product Companies",
     description: "Growing through partner programs, affiliate networks, or commission-based sales teams.",
     badge: "Digital & Tech",

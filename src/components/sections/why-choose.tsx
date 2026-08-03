@@ -1,10 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import HandshakeLinear from "@iconify-react/solar/handshake-linear";
-import SettingsMinimalisticLinear from "@iconify-react/solar/settings-minimalistic-linear";
-import Rocket2Linear from "@iconify-react/solar/rocket-2-linear";
-import LayersMinimalisticLinear from "@iconify-react/solar/layers-minimalistic-linear";
+import { Handshake, Settings, Rocket, Layers } from "lucide-react";
 
 import { Eyebrow } from "@/components/elements/eyebrow";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,25 +9,25 @@ import { cn } from "@/lib/utils";
 
 const DIFFERENCE_ITEMS = [
   {
-    icon: HandshakeLinear,
+    icon: Handshake,
     title: "We Are Invested in Your Success",
     description:
       "We do not hand over a platform and disappear. Every business we work with is a partner. We stay involved, we clear the roadblocks, and we measure our success by yours.",
   },
   {
-    icon: SettingsMinimalisticLinear,
+    icon: Settings,
     title: "Built for Your Model, Not the Other Way Around",
     description:
       "NovaDirect is not a rigid system you have to fit your business into. Your commission structure, your member journey, your product setup, everything is configured around how your business actually works.",
   },
   {
-    icon: Rocket2Linear,
+    icon: Rocket,
     title: "A Modern Platform That Keeps Moving",
     description:
       "Direct selling is evolving. The way people buy, refer, and get rewarded is changing. NovaDirect is built to move with that change, not against it.",
   },
   {
-    icon: LayersMinimalisticLinear,
+    icon: Layers,
     title: "More Than a Platform When You Need It",
     description:
       "Behind NovaDirect sits a multidisciplinary team with capabilities across branding, design, development, marketing, and AI transformation. When your business needs more than software, we are already built for it.",
