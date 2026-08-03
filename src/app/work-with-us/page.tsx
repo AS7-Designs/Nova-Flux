@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AltArrowRightLinear from "@iconify-react/solar/alt-arrow-right-linear";
 
 import CtaBand from "@/components/sections/cta-band";
 import { Eyebrow } from "@/components/elements/eyebrow";
