@@ -266,7 +266,7 @@ const Navbar = () => {
           {ACTION_BUTTONS.map((button) => (
             <Button
               key={button.label}
-              variant={button.variant === "ghost" ? "outline" : button.variant}
+              variant={button.variant}
               asChild
               className="h-12 w-full rounded-full shadow-sm"
             >
