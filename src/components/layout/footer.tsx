@@ -235,10 +235,7 @@ export default function Footer({
         <div className="flex flex-col gap-20">
           <div className="flex flex-col justify-between gap-10 lg:flex-row">
             <div className="flex flex-col items-start">
-              <Logo
-                className="gap-3 [&_img]:brightness-0 [&_img]:invert"
-                wrapperClassName="[&>a>span:first-child]:!size-10 md:[&>a>span:first-child]:!size-12 [&>a>span:last-child]:text-2xl md:[&>a>span:last-child]:text-3xl [&_span]:text-white"
-              />
+              <Logo inverted />
 
               <div className="mt-16 flex gap-2 pb-6">
                 <SocialLinks socialLinks={socialLinks} />
