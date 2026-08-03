@@ -32,7 +32,7 @@ export default function FeaturesReveal({ className, containerClass }: { classNam
         <div className="flex flex-col items-center justify-center">
           <div className="flex w-full">
             <TextReveal className="items-center justify-center text-center text-pretty">
-              This is what direct selling software should feel like. Smarter networks, automated commissions, and a platform that grows itself.
+              Built for Businesses That Grow Through People. Every layer of your direct selling operation in one modern platform.
             </TextReveal>
           </div>
         </div>
