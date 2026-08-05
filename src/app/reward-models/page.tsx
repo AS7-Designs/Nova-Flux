@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import AltArrowRightLinear from "@iconify-react/solar/alt-arrow-right-linear";
 import { Eyebrow } from "@/components/elements/eyebrow";
 import { FluxWavePattern } from "@/components/elements/flux-wave-pattern";
+import CtaBand from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/data/config";
@@ -194,44 +194,11 @@ export default function RewardModelsPage() {
         </div>
       </section>
 
-      {/* Custom CTA */}
-      <section className="section-padding relative overflow-hidden">
-        <FluxWavePattern scale={22} angle={-45} masked="band" className="opacity-[0.07] dark:opacity-[0.05]" />
-
-        {/* Soft glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse 50% 40% at 50% 50%, oklch(0.648 0.181 22.12 / 0.06), transparent)",
-          }}
-        />
-
-        <div className="relative z-10 container container-large">
-          <div className="flex flex-col items-center justify-center text-center">
-            <div className="mx-auto max-w-3xl space-y-4">
-              <h2 className="text-3xl font-semibold tracking-tight lg:text-5xl">Your Compensation Model, Built Exactly the Way You Need It.</h2>
-              <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg leading-relaxed">
-                No two businesses reward their people the same way. Let's talk about yours.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Button size="lg" className="rounded-full !pl-5.5 before:rounded-full" asChild>
-                <a href="/contact">
-                  Schedule a Discovery Call
-                  <div className="bg-background/15 border-background/10 grid size-5.5 place-items-center rounded-full border">
-                    <AltArrowRightLinear className="size-4" />
-                  </div>
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" className="rounded-full" asChild>
-                <a href="/contact">Send Us a Message &rarr;</a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        containerClass="container-large"
+        title="Your Compensation Model, Built Exactly the Way You Need It."
+        description="No two businesses reward their people the same way. Let's talk about yours."
+      />
     </>
   );
 }

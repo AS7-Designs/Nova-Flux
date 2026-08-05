@@ -8,7 +8,19 @@ import { Button } from "@/components/ui/button";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/utils";
 
-export default function CtaBand({ className, containerClass }: { className?: string; containerClass?: string }) {
+interface CtaBandProps {
+  className?: string;
+  containerClass?: string;
+  title?: string;
+  description?: string;
+}
+
+export default function CtaBand({
+  className,
+  containerClass,
+  title = "Let's Talk About Your Business.",
+  description = "Every business that runs on NovaDirect starts with a conversation. Not a sales pitch. A real discussion about your network, your model, and what you are trying to build. If you are ready to explore what NovaDirect can do for your business, book a discovery call and let's figure it out together.",
+}: CtaBandProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -33,9 +45,9 @@ export default function CtaBand({ className, containerClass }: { className?: str
       >
         <div className="flex flex-col items-center justify-center text-center">
           <div className="mx-auto max-w-3xl space-y-4">
-            <h2 className="text-3xl font-semibold tracking-tight lg:text-5xl">Let's Talk About Your Business.</h2>
+            <h2 className="text-3xl font-semibold tracking-tight lg:text-5xl">{title}</h2>
             <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg leading-relaxed">
-              Every business that runs on NovaDirect starts with a conversation. Not a sales pitch. A real discussion about your network, your model, and what you are trying to build. If you are ready to explore what NovaDirect can do for your business, book a discovery call and let's figure it out together.
+              {description}
             </p>
           </div>
 
