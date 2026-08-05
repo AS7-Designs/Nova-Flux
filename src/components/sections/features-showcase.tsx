@@ -14,7 +14,7 @@ const layers = [
   {
     id: "layer-people",
     number: "01",
-    eyebrow: "01 — Your People",
+    eyebrow: "YOUR PEOPLE",
     title: "Build, Manage and Grow Your Network",
     description:
       "Your network is the engine of your business. NovaDirect gives you complete visibility and control over everyone in it, from the moment they join to the moment they become your top performer.",
@@ -25,12 +25,15 @@ const layers = [
       "Rank and Performance Management",
     ],
     icon: Users,
-    color: "from-blue-500/15 via-indigo-500/10 to-transparent",
+    cardBg: "bg-gradient-to-br from-[#0D1B3E] via-[#152B68] to-[#0A132E] text-white border-blue-500/40",
+    accentColor: "text-[#5EEBFC]",
+    badgeBg: "bg-[#5EEBFC]/15 border-[#5EEBFC]/30 text-[#5EEBFC]",
+    pillBg: "bg-white/10 border-white/15 text-white",
   },
   {
     id: "layer-products",
     number: "02",
-    eyebrow: "02 — Your Products",
+    eyebrow: "YOUR PRODUCTS",
     title: "Sell What You Offer. However You Offer It.",
     description:
       "Whether you sell physical products, digital services, memberships, or subscriptions, NovaDirect connects your offering directly to your network. Your members can browse, buy, and refer, all within your branded platform.",
@@ -41,13 +44,16 @@ const layers = [
       "Member Pricing vs Retail Tier Pricing",
     ],
     icon: ShoppingBag,
-    color: "from-cyan-500/15 via-blue-500/10 to-transparent",
+    cardBg: "bg-gradient-to-br from-[#082A42] via-[#0C456E] to-[#061C2C] text-white border-cyan-500/40",
+    accentColor: "text-[#0090FF]",
+    badgeBg: "bg-[#0090FF]/15 border-[#0090FF]/30 text-[#0090FF]",
+    pillBg: "bg-white/10 border-white/15 text-white",
   },
   {
     id: "layer-compensation",
     number: "03",
-    eyebrow: "03 — Your Compensation",
-    title: "Your Commission Logic. Built Exactly the Way You Designed It.",
+    eyebrow: "YOUR COMPENSATION",
+    title: "Your Commission Logic. Built Exactly as Designed.",
     description:
       "No two direct selling businesses reward their people the same way. NovaDirect is built to handle the full complexity of your compensation plan, whatever that looks like, accurately and automatically.",
     bullets: [
@@ -57,15 +63,18 @@ const layers = [
       "Rank Advancement and Qualifications",
     ],
     icon: TrendingUp,
-    color: "from-indigo-500/15 via-purple-500/10 to-transparent",
+    cardBg: "bg-gradient-to-br from-[#211042] via-[#351A68] to-[#160B2B] text-white border-purple-500/40",
+    accentColor: "text-purple-300",
+    badgeBg: "bg-purple-500/15 border-purple-500/30 text-purple-300",
+    pillBg: "bg-white/10 border-white/15 text-white",
   },
   {
     id: "layer-payments",
     number: "04",
-    eyebrow: "04 — Your Payments",
-    title: "From the First Transaction to the Final Payout. Handled.",
+    eyebrow: "YOUR PAYMENTS",
+    title: "From First Transaction to Final Payout. Handled.",
     description:
-      "Getting paid and paying out your network should never be a source of stress. NovaDirect manages the full payment cycle, from customer transactions and gateway integrations to wallet management, payouts, and tax compliance.",
+      "Getting paid and paying out your network should never be a source of stress. NovaDirect manages the full payment cycle, from customer transactions and gateway integrations to wallet management and payouts.",
     bullets: [
       "Multi-Gateway Integrations",
       "eWallet and Earnings Ledger",
@@ -73,12 +82,15 @@ const layers = [
       "Tax Documentation and Compliance",
     ],
     icon: CreditCard,
-    color: "from-emerald-500/15 via-teal-500/10 to-transparent",
+    cardBg: "bg-gradient-to-br from-[#083327] via-[#0E5440] to-[#052219] text-white border-emerald-500/40",
+    accentColor: "text-emerald-300",
+    badgeBg: "bg-emerald-500/15 border-emerald-500/30 text-emerald-300",
+    pillBg: "bg-white/10 border-white/15 text-white",
   },
   {
     id: "layer-control",
     number: "05",
-    eyebrow: "05 — Your Control",
+    eyebrow: "YOUR CONTROL",
     title: "One Admin Layer. Complete Visibility Across Everything.",
     description:
       "Every part of your operation — your members, your products, your commissions, your payouts — lives inside one unified admin experience. Role-based access means the right people see exactly what they need to.",
@@ -89,107 +101,170 @@ const layers = [
       "Commission Adjustments and Audits",
     ],
     icon: Settings,
-    color: "from-blue-600/15 via-sky-500/10 to-transparent",
+    cardBg: "bg-gradient-to-br from-[#182232] via-[#26354D] to-[#0E1520] text-white border-slate-400/40",
+    accentColor: "text-blue-300",
+    badgeBg: "bg-blue-500/15 border-blue-500/30 text-blue-300",
+    pillBg: "bg-white/10 border-white/15 text-white",
   },
 ];
 
-interface StackCardProps {
+interface IndividualCardProps {
   layer: (typeof layers)[0];
   index: number;
   total: number;
   progress: any;
-  prefersReducedMotion: boolean;
 }
 
-function StackCard({ layer, index, total, progress, prefersReducedMotion }: StackCardProps) {
+function IndividualCard({ layer, index, total, progress }: IndividualCardProps) {
   const Icon = layer.icon;
-  const targetScale = 1 - (total - 1 - index) * 0.035;
+  const isLast = index === total - 1;
 
-  const rangeStart = index / total;
-  const scale = useTransform(progress, [rangeStart, 1], [1, targetScale]);
+  // Calculate exit range for this card (when it slides up off the stack)
+  // Total scroll range split: Header uses [0, 0.12], cards exit sequentially between [0.15, 0.85]
+  const stepSize = 0.70 / (total - 1);
+  const exitStart = 0.15 + index * stepSize;
+  const exitEnd = exitStart + stepSize * 0.7;
+
+  // Transforms for exiting card
+  const exitY = useTransform(progress, [exitStart, exitEnd], ["0%", "-115%"]);
+  const exitRotateX = useTransform(progress, [exitStart, exitEnd], [0, 14]);
+  const exitOpacity = useTransform(progress, [exitStart, exitEnd], [1, 0]);
+
+  // Base stack values (when card sits behind in initial deck state)
+  const baseScale = 1 - index * 0.04;
+  const baseTranslateY = index * 14;
+
+  // Build interpolation arrays for promotion (cards moving forward as previous cards exit)
+  const breakpoints: number[] = [0];
+  const scaleValues: number[] = [baseScale];
+  const yValues: number[] = [baseTranslateY];
+
+  for (let k = 0; k < index; k++) {
+    const kExitStart = 0.15 + k * stepSize;
+    const kExitEnd = kExitStart + stepSize * 0.7;
+    const cardsAhead = index - (k + 1);
+
+    breakpoints.push(kExitStart, kExitEnd);
+    scaleValues.push(1 - (index - k) * 0.04, 1 - cardsAhead * 0.04);
+    yValues.push((index - k) * 14, cardsAhead * 14);
+  }
+
+  breakpoints.push(1.0);
+  scaleValues.push(scaleValues[scaleValues.length - 1]);
+  yValues.push(yValues[yValues.length - 1]);
+
+  const currentScale = useTransform(progress, breakpoints, scaleValues);
+  const currentStackY = useTransform(progress, breakpoints, yValues);
+
+  // Combine stack positioning with exit animation
+  const cardY = useTransform(progress, (p: number) => {
+    if (!isLast && p >= exitStart) {
+      return exitY.get();
+    }
+    return `${currentStackY.get()}px`;
+  });
+
+  const cardRotateX = useTransform(progress, (p: number) => {
+    if (!isLast && p >= exitStart) {
+      return exitRotateX.get();
+    }
+    return 0;
+  });
+
+  const cardOpacity = useTransform(progress, (p: number) => {
+    if (!isLast && p >= exitStart) {
+      return exitOpacity.get();
+    }
+    return 1;
+  });
+
+  const zIndex = total - index;
 
   return (
-    <div
+    <motion.div
       id={layer.id}
-      className="sticky scroll-mt-28 mb-8 last:mb-0"
       style={{
-        top: `calc(105px + ${index * 22}px)`,
+        y: cardY,
+        scale: currentScale,
+        rotateX: cardRotateX,
+        opacity: cardOpacity,
+        zIndex,
+        perspective: 1000,
       }}
+      className="absolute inset-x-0 top-0 origin-top transition-shadow duration-300"
     >
-      <motion.div
-        style={prefersReducedMotion ? undefined : { scale }}
-        className="origin-top"
+      <Card
+        className={cn(
+          "relative overflow-hidden rounded-3xl border shadow-2xl p-6 md:p-8 lg:p-10 transition-all duration-300",
+          layer.cardBg
+        )}
       >
-        <Card className="relative overflow-hidden border-border/80 bg-card/95 backdrop-blur-xl shadow-xl dark:shadow-2xl rounded-3xl p-6 md:p-10 lg:p-12 transition-all duration-300">
-          {/* Top hairline gradient line */}
-          <div
-            aria-hidden
-            className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0]"
-          />
+        <FluxDotGrid className="opacity-[0.06]" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="flex items-center justify-between">
-                <Eyebrow>{layer.eyebrow}</Eyebrow>
-                <span className="text-xs font-mono font-bold tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                  LAYER {layer.number}
-                </span>
-              </div>
+        {/* Top hairline accent line */}
+        <div
+          aria-hidden
+          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0]"
+        />
 
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight">
-                {layer.title}
-              </h3>
-
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                {layer.description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                {layer.bullets.map((bullet, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-muted/40 border border-border/50 text-sm font-medium text-foreground transition-colors hover:bg-muted/70"
-                  >
-                    <CheckCircle2 className="size-4 text-primary shrink-0" />
-                    <span>{bullet}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Visual Card Column */}
-            <div className="lg:col-span-5">
-              <div
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+          {/* Left Content Column */}
+          <div className="lg:col-span-7 space-y-4 md:space-y-5">
+            <div className="flex items-center justify-between">
+              <span className={cn("text-xs font-bold tracking-widest uppercase", layer.accentColor)}>
+                {layer.eyebrow}
+              </span>
+              <span
                 className={cn(
-                  "relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br p-8 md:p-10 flex flex-col items-center justify-center text-center min-h-[260px] lg:min-h-[300px] shadow-inner",
-                  layer.color
+                  "text-xs font-mono font-bold tracking-widest px-3 py-1 rounded-full border",
+                  layer.badgeBg
                 )}
               >
-                <FluxDotGrid className="opacity-[0.06]" />
+                LAYER {layer.number}
+              </span>
+            </div>
 
-                {/* Decorative background glow */}
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
+              {layer.title}
+            </h3>
+
+            <p className="text-white/80 text-sm md:text-base leading-relaxed">
+              {layer.description}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              {layer.bullets.map((bullet, idx) => (
                 <div
-                  aria-hidden
-                  className="absolute -top-12 -right-12 size-40 rounded-full bg-primary/10 blur-3xl"
-                />
-
-                <div className="relative z-10 size-20 rounded-2xl bg-background/90 shadow-lg border border-border/60 flex items-center justify-center text-primary mb-6 transition-transform duration-300 hover:scale-105">
-                  <Icon className="size-10" />
+                  key={idx}
+                  className={cn(
+                    "flex items-center gap-2.5 p-2.5 rounded-xl border text-xs md:text-sm font-medium transition-colors",
+                    layer.pillBg
+                  )}
+                >
+                  <CheckCircle2 className={cn("size-4 shrink-0", layer.accentColor)} />
+                  <span>{bullet}</span>
                 </div>
-
-                <h4 className="relative z-10 text-lg font-bold text-foreground mb-1">
-                  {layer.title}
-                </h4>
-                <span className="relative z-10 text-xs font-semibold tracking-wider uppercase text-primary">
-                  {layer.eyebrow}
-                </span>
-              </div>
+              ))}
             </div>
           </div>
-        </Card>
-      </motion.div>
-    </div>
+
+          {/* Right Visual Card Box */}
+          <div className="lg:col-span-5">
+            <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-6 md:p-8 flex flex-col items-center justify-center text-center min-h-[220px] lg:min-h-[260px]">
+              <div className="relative z-10 size-16 rounded-2xl bg-white/10 border border-white/20 shadow-inner flex items-center justify-center text-white mb-4">
+                <Icon className="size-8" />
+              </div>
+              <h4 className="relative z-10 text-base font-bold text-white mb-1">
+                {layer.title}
+              </h4>
+              <span className={cn("relative z-10 text-xs font-semibold tracking-wider uppercase", layer.accentColor)}>
+                {layer.eyebrow}
+              </span>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
   );
 }
 
@@ -208,46 +283,41 @@ export default function FeaturesShowcase({
     offset: ["start start", "end end"],
   });
 
-  return (
-    <section id="platform" className={cn("section-padding relative overflow-hidden", className)}>
-      <div className={cn("container", containerClass)}>
-        <div>
-          {/* Section Header */}
-          <motion.div
-            className="max-w-4xl space-y-3 lg:space-y-4 mx-auto text-center mb-12 lg:mb-16"
-            initial={prefersReducedMotion ? "visible" : "hidden"}
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { type: "spring", stiffness: 100, damping: 25 },
-              },
-            }}
-          >
-            <Eyebrow className="justify-center">The Platform</Eyebrow>
-            <h2 className="text-3xl tracking-tight lg:text-5xl font-semibold">
-              Every Layer of Your Business. One Platform.
-            </h2>
-            <p className="text-muted-foreground text-base lg:text-lg leading-relaxed max-w-3xl mx-auto">
-              NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts, all configured around your business and all under your brand.
-            </p>
-          </motion.div>
+  // Header fades and moves up as user starts scrolling through section
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+  const headerY = useTransform(scrollYProgress, [0, 0.12], [0, -30]);
 
-          {/* Stacked Cards Container */}
-          <div ref={containerRef} className="relative pb-16">
-            {layers.map((layer, index) => (
-              <StackCard
-                key={layer.id}
-                layer={layer}
-                index={index}
-                total={layers.length}
-                progress={scrollYProgress}
-                prefersReducedMotion={prefersReducedMotion}
-              />
-            ))}
+  return (
+    <section id="platform" className={cn("relative", className)}>
+      <div ref={containerRef} className="relative h-[360vh]">
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-6 md:py-10">
+          <div className={cn("container container-large", containerClass)}>
+            {/* Section Header */}
+            <motion.div
+              style={prefersReducedMotion ? undefined : { opacity: headerOpacity, y: headerY }}
+              className="max-w-4xl space-y-3 lg:space-y-4 mx-auto text-center mb-6 md:mb-8 shrink-0"
+            >
+              <Eyebrow className="justify-center">The Platform</Eyebrow>
+              <h2 className="text-3xl tracking-tight lg:text-5xl font-semibold">
+                Every Layer of Your Business. One Platform.
+              </h2>
+              <p className="text-muted-foreground text-base lg:text-lg leading-relaxed max-w-3xl mx-auto">
+                NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts.
+              </p>
+            </motion.div>
+
+            {/* Deck Area */}
+            <div className="relative max-w-5xl mx-auto min-h-[460px] md:min-h-[500px]">
+              {layers.map((layer, index) => (
+                <IndividualCard
+                  key={layer.id}
+                  layer={layer}
+                  index={index}
+                  total={layers.length}
+                  progress={scrollYProgress}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
