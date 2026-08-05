@@ -132,26 +132,26 @@ export default function RewardModelsPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Callout Card */}
-            <Card className="border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 md:p-8 flex flex-col justify-between">
-              <div className="space-y-4">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Consultation
-                </span>
-                <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-                  Not Sure Which Model Fits Your Business?
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-base">
-                  That is exactly what our discovery call is for. We have worked with businesses across direct selling, memberships, subscriptions, ambassador programs, and partner networks. We will help you design a compensation model that works for your people and your growth goals.
-                </p>
-              </div>
-              <div className="mt-6 pt-4">
-                <Button size="lg" className="rounded-full" asChild>
-                  <a href="/contact">Schedule a Discovery Call</a>
-                </Button>
-              </div>
-            </Card>
+      {/* Consultation Section (Not a card) */}
+      <section className="py-16 md:py-20 bg-card/50 border-y border-border/50 relative overflow-hidden">
+        <div className="container container-large relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <Eyebrow className="justify-center">Consultation</Eyebrow>
+            <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl text-foreground">
+              Not Sure Which Model Fits Your Business?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              That is exactly what our discovery call is for. We have worked with businesses across direct selling, memberships, subscriptions, ambassador programs, and partner networks. We will help you design a compensation model that works for your people and your growth goals.
+            </p>
+            <div className="pt-2">
+              <Button size="lg" className="rounded-full px-8" asChild>
+                <a href="/contact">Schedule a Discovery Call</a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
