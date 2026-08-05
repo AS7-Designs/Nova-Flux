@@ -108,55 +108,26 @@ const BookADemoContactForm = () => {
     <div className="bg-card border-b p-8 lg:border-r lg:border-b-0">
       <form className="grid grid-cols-2 gap-x-3 gap-y-6">
         <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>First Name</Label>
-          <Input type="text" placeholder="Bruce" />
+          <Label>Your Name</Label>
+          <Input type="text" placeholder="John Doe" />
         </FormGroup>
         <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>Last Name</Label>
-          <Input type="text" placeholder="Wayne" />
+          <Label>Company Name</Label>
+          <Input type="text" placeholder="Your Business Name" />
         </FormGroup>
         <FormGroup className="col-span-2">
-          <Label>Email</Label>
-          <Input type="email" placeholder="bruce@example.com" />
-        </FormGroup>
-        <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>Company size</Label>
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a company size" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1-10">1-10</SelectItem>
-              <SelectItem value="11-50">11-50</SelectItem>
-              <SelectItem value="51-100">51-100</SelectItem>
-              <SelectItem value="101-500">101-500</SelectItem>
-              <SelectItem value="501-1000">501-1000</SelectItem>
-            </SelectContent>
-          </Select>
-        </FormGroup>
-        <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>Role</Label>
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="CEO">CEO</SelectItem>
-              <SelectItem value="CTO">CTO</SelectItem>
-              <SelectItem value="CFO">CFO</SelectItem>
-              <SelectItem value="Other">Other</SelectItem>
-            </SelectContent>
-          </Select>
+          <Label>Email Address</Label>
+          <Input type="email" placeholder="john@company.com" />
         </FormGroup>
         <FormGroup className="col-span-2">
-          <Label>Message</Label>
+          <Label>What are you looking to build?</Label>
           <Textarea
-            placeholder="Share more about your use case, product, tech stack and what you want to accomplish"
+            placeholder="Tell us about your business, compensation model, or network goals..."
             className="min-h-32"
           />
         </FormGroup>
-        <Button type="submit" className="col-span-2" size="lg">
-          Continue <ArrowRight />
+        <Button type="submit" className="col-span-2 rounded-full" size="lg">
+          Send Message <ArrowRight className="size-4 ml-1" />
         </Button>
       </form>
     </div>
@@ -186,84 +157,44 @@ interface TestimonialsProps {
 }
 
 const BookADemoTestimonials = ({ testimonials }: TestimonialsProps) => {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
   return (
-    <div className="relative flex h-full p-8">
-      <div className="absolute top-8 right-8 flex items-center gap-2">
-        <Button
-          size="sm"
-          onClick={() => setActiveTestimonial((activeTestimonial + testimonials.length - 1) % testimonials.length)}
-        >
-          <ArrowLeft />
-        </Button>
-        <Button size="sm" onClick={() => setActiveTestimonial((activeTestimonial + 1) % testimonials.length)}>
-          <ArrowRight />
-        </Button>
+    <div className="relative flex flex-col justify-between h-full p-8 lg:p-10 space-y-8 bg-card/40">
+      <div className="space-y-6">
+        <div>
+          <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+            What Happens Next
+          </span>
+          <h3 className="text-2xl font-semibold tracking-tight text-foreground mt-1">
+            Personal Response Within 1 Hour
+          </h3>
+        </div>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          We read every message personally. You will hear from us within one hour with a real response, not an automated reply.
+        </p>
+        <p className="text-muted-foreground text-base leading-relaxed">
+          If your enquiry is a good fit for NovaDirect, we will suggest a discovery call to go deeper. If you have already booked a call, we will come prepared having reviewed anything you shared with us.
+        </p>
       </div>
 
-      <AnimatePresence mode="wait">
-        {testimonials.map((testimonial, index) => {
-          if (index !== activeTestimonial) return null;
-
-          return (
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeInOut",
-              }}
-              key={`testimonial-${index}`}
-              className="flex h-full flex-col justify-between gap-12"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={testimonial.companyLogo}
-                  alt={`${testimonial.author.name} company logo`}
-                  className={cn("h-6 w-auto object-contain md:h-8", testimonial.companyLogoClassName ?? "dark:invert")}
-                />
-              </div>
-
-              <div className="space-y-6">
-                <blockquote className="text-muted-foreground leading-snug sm:text-lg lg:max-w-md">
-                  &quot;
-                  {testimonial.quote.fullQuote.split(" ").map((word, wordIndex) => {
-                    const isHighlighted = testimonial.quote.highlightedWords.some((highlighted) =>
-                      word.toLowerCase().includes(highlighted.toLowerCase()),
-                    );
-                    return (
-                      <span key={wordIndex} className={isHighlighted ? "text-foreground font-medium" : ""}>
-                        {word}{" "}
-                      </span>
-                    );
-                  })}
-                  &quot;
-                </blockquote>
-
-                <div className="flex items-center gap-3">
-                  <img
-                    src={testimonial.author.profilePicture}
-                    alt={testimonial.author.name}
-                    className="size-9 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="text-sm font-medium">{testimonial.author.name}</div>
-                    <div className="text-muted-foreground text-sm">{testimonial.author.designation}</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
+      <div className="pt-6 border-t border-border/40 space-y-3">
+        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/80">
+          Other Ways to Reach Us
+        </span>
+        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="font-medium text-foreground">Email:</span>
+            <a href="mailto:info@novadirectsoftware.com" className="text-primary hover:underline">
+              info@novadirectsoftware.com
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-medium text-foreground">LinkedIn:</span>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-primary hover:underline">
+              NovaDirect Software
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

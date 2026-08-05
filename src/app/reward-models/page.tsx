@@ -105,6 +105,11 @@ export default function RewardModelsPage() {
       {/* Reward Models Grid */}
       <section className="section-padding relative">
         <div className="container container-large">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight uppercase text-foreground">
+              HOW DO YOU WANT TO REWARD YOUR NETWORK?
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {REWARD_MODELS.map((model, idx) => (
               <Card key={idx} className="border-border/60 bg-card p-6 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
