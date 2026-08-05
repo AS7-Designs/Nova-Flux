@@ -2,7 +2,19 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Users, ShoppingBag, TrendingUp, CreditCard, Settings, CheckCircle2 } from "lucide-react";
+import {
+  Users,
+  ShoppingBag,
+  TrendingUp,
+  CreditCard,
+  Settings,
+  CheckCircle2,
+  Network,
+  Layers,
+  Zap,
+  Wallet,
+  ShieldCheck,
+} from "lucide-react";
 
 import { Eyebrow } from "@/components/elements/eyebrow";
 import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
@@ -25,7 +37,9 @@ const layers = [
       "Rank and Performance Management",
     ],
     icon: Users,
-    gradient: "from-blue-500/10 via-indigo-500/5 to-transparent",
+    subIcon: Network,
+    badgeText: "DISTRIBUTOR NETWORK",
+    stat: "100% Hierarchy Visibility",
   },
   {
     id: "layer-products",
@@ -41,7 +55,9 @@ const layers = [
       "Member Pricing vs Retail Tier Pricing",
     ],
     icon: ShoppingBag,
-    gradient: "from-cyan-500/10 via-blue-500/5 to-transparent",
+    subIcon: Layers,
+    badgeText: "MULTI-PRODUCT CATALOG",
+    stat: "Subscriptions & Digital Bundles",
   },
   {
     id: "layer-compensation",
@@ -57,7 +73,9 @@ const layers = [
       "Rank Advancement and Qualifications",
     ],
     icon: TrendingUp,
-    gradient: "from-purple-500/10 via-indigo-500/5 to-transparent",
+    subIcon: Zap,
+    badgeText: "COMMISSION ENGINE",
+    stat: "Real-Time Calculation & Audits",
   },
   {
     id: "layer-payments",
@@ -73,7 +91,9 @@ const layers = [
       "Tax Documentation and Compliance",
     ],
     icon: CreditCard,
-    gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+    subIcon: Wallet,
+    badgeText: "GLOBAL PAYOUT ENGINE",
+    stat: "eWallets & Gateway Integrations",
   },
   {
     id: "layer-control",
@@ -89,7 +109,9 @@ const layers = [
       "Commission Adjustments and Audits",
     ],
     icon: Settings,
-    gradient: "from-sky-500/10 via-blue-500/5 to-transparent",
+    subIcon: ShieldCheck,
+    badgeText: "UNIFIED ADMIN CONTROL",
+    stat: "Granular Role-Based Permissions",
   },
 ];
 
@@ -103,35 +125,38 @@ interface IndividualCardProps {
 
 function IndividualCard({ layer, index, total, progress, prefersReducedMotion }: IndividualCardProps) {
   const Icon = layer.icon;
+  const SubIcon = layer.subIcon;
   const isLast = index === total - 1;
 
-  // Sequential exit threshold for cards 0..3
-  const stepSize = 0.85 / (total - 1);
-  const exitStart = 0.08 + index * stepSize;
+  // Scroll phase calculation
+  // Total progress is [0, 1]
+  // First phase is header scrolling away, then cards 0..3 exit between 0.15 and 0.85
+  const stepSize = 0.70 / (total - 1);
+  const exitStart = 0.15 + index * stepSize;
   const exitEnd = exitStart + stepSize * 0.75;
 
   // Exit transforms when card flips & slides up off the deck
   const exitY = useTransform(progress, [exitStart, exitEnd], ["0%", "-120%"]);
-  const exitRotateX = useTransform(progress, [exitStart, exitEnd], [0, 12]);
+  const exitRotateX = useTransform(progress, [exitStart, exitEnd], [0, 10]);
   const exitOpacity = useTransform(progress, [exitStart, exitEnd], [1, 0]);
 
-  // Base values when card is sitting stacked underneath
+  // Base stack positioning (cards underneath at start)
   const baseScale = 1 - index * 0.035;
-  const baseTranslateY = index * 14;
+  const baseTranslateY = index * 10;
 
-  // Interpolation arrays for stepping forward as previous cards exit
+  // Interpolation arrays for stepping forward
   const breakpoints: number[] = [0];
   const scaleValues: number[] = [baseScale];
   const yValues: number[] = [baseTranslateY];
 
   for (let k = 0; k < index; k++) {
-    const kExitStart = 0.08 + k * stepSize;
+    const kExitStart = 0.15 + k * stepSize;
     const kExitEnd = kExitStart + stepSize * 0.75;
     const cardsAhead = index - (k + 1);
 
     breakpoints.push(kExitStart, kExitEnd);
     scaleValues.push(1 - (index - k) * 0.035, 1 - cardsAhead * 0.035);
-    yValues.push((index - k) * 14, cardsAhead * 14);
+    yValues.push((index - k) * 10, cardsAhead * 10);
   }
 
   breakpoints.push(1.0);
@@ -181,42 +206,32 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
       }
       className="absolute inset-x-0 top-0 origin-top"
     >
-      <Card
-        className={cn(
-          "relative overflow-hidden rounded-3xl border border-border/80 bg-card text-card-foreground shadow-2xl dark:shadow-none p-6 md:p-10 lg:p-12 transition-all duration-300"
-        )}
-      >
+      <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-6 md:p-8 lg:p-10 transition-all duration-300">
         <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-        {/* Top brand gradient hairline */}
-        <div
-          aria-hidden
-          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0]"
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Content Column */}
-          <div className="lg:col-span-7 space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+          {/* Content Column */}
+          <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center justify-between">
               <Eyebrow>{layer.eyebrow}</Eyebrow>
-              <span className="text-xs font-mono font-bold tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+              <span className="text-xs font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
                 LAYER {layer.number}
               </span>
             </div>
 
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
               {layer.title}
             </h3>
 
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
               {layer.description}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
               {layer.bullets.map((bullet, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 border border-border/60 text-sm font-medium text-foreground transition-colors hover:bg-muted/80"
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs md:text-sm font-medium text-foreground transition-colors hover:bg-muted/70"
                 >
                   <CheckCircle2 className="size-4 text-primary shrink-0" />
                   <span>{bullet}</span>
@@ -225,23 +240,27 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
             </div>
           </div>
 
-          {/* Right Visual Box */}
+          {/* Right Feature Graphic */}
           <div className="lg:col-span-5">
-            <div
-              className={cn(
-                "relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br p-8 md:p-10 flex flex-col items-center justify-center text-center min-h-[250px] lg:min-h-[280px] shadow-inner",
-                layer.gradient
-              )}
-            >
-              <div className="relative z-10 size-20 rounded-2xl bg-background/90 border border-border/80 shadow-md flex items-center justify-center text-primary mb-5 transition-transform duration-300 hover:scale-105">
-                <Icon className="size-10" />
+            <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 flex flex-col justify-between min-h-[200px] md:min-h-[240px]">
+              <div className="flex items-center justify-between mb-4">
+                <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <Icon className="size-6" />
+                </div>
+                <span className="text-[10px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2.5 py-1 rounded-md border border-border">
+                  {layer.badgeText}
+                </span>
               </div>
-              <h4 className="relative z-10 text-lg font-bold text-foreground mb-1">
-                {layer.title}
-              </h4>
-              <span className="relative z-10 text-xs font-semibold tracking-wider uppercase text-primary">
-                {layer.eyebrow}
-              </span>
+
+              <div className="space-y-2 mt-auto">
+                <div className="flex items-center gap-2 text-xs font-semibold text-primary">
+                  <SubIcon className="size-4" />
+                  <span>{layer.stat}</span>
+                </div>
+                <p className="text-sm font-semibold text-foreground leading-snug">
+                  {layer.title}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -266,16 +285,16 @@ export default function FeaturesShowcase({
   });
 
   return (
-    <section id="platform" className={cn("section-padding relative overflow-hidden", className)}>
+    <section id="platform" className={cn("py-12 md:py-16 relative overflow-hidden", className)}>
       <div className={cn("container container-large", containerClass)}>
-        {/* Section Header - Part of document scroll, moves off screen naturally */}
+        {/* Section Header */}
         <motion.div
-          className="max-w-4xl space-y-3 lg:space-y-4 mx-auto text-center mb-12 lg:mb-16"
+          className="max-w-3xl space-y-2.5 mx-auto text-center mb-6 md:mb-8"
           initial={prefersReducedMotion ? "visible" : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={{
-            hidden: { opacity: 0, y: 30 },
+            hidden: { opacity: 0, y: 20 },
             visible: {
               opacity: 1,
               y: 0,
@@ -284,18 +303,19 @@ export default function FeaturesShowcase({
           }}
         >
           <Eyebrow className="justify-center">The Platform</Eyebrow>
-          <h2 className="text-3xl tracking-tight lg:text-5xl font-semibold text-foreground">
+          <h2 className="text-3xl tracking-tight md:text-4xl lg:text-5xl font-semibold text-foreground">
             Every Layer of Your Business. One Platform.
           </h2>
-          <p className="text-muted-foreground text-base lg:text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts, all configured around your business and all under your brand.
           </p>
         </motion.div>
 
         {/* Scroll Track for Card Stack */}
         <div ref={containerRef} className="relative h-[320vh]">
-          <div className="sticky top-24 md:top-28 h-[calc(100vh-8rem)] flex items-center justify-center overflow-hidden">
-            <div className="relative w-full max-w-5xl mx-auto min-h-[460px] md:min-h-[500px]">
+          {/* Centered Sticky Container */}
+          <div className="sticky top-20 md:top-24 h-[calc(100vh-6rem)] flex items-center justify-center overflow-hidden">
+            <div className="relative w-full max-w-5xl mx-auto min-h-[420px] md:min-h-[460px]">
               {layers.map((layer, index) => (
                 <IndividualCard
                   key={layer.id}
