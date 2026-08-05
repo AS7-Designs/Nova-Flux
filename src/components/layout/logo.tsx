@@ -43,7 +43,7 @@ const Logo: React.FC<LogoProps> = ({ className = "", wrapperClassName = "", only
             <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
               Direct
             </span>
-            <span className="text-[9px] font-semibold text-muted-foreground ml-0.5 select-none">TM</span>
+            <span className={cn("text-[9px] font-semibold ml-0.5 select-none", inverted ? "text-white/40" : "text-muted-foreground")}>TM</span>
           </div>
           <span className={cn("text-[10px] font-semibold tracking-wider uppercase mt-0.5", subtextColor)}>
             Software

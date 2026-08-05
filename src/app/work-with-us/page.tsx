@@ -169,6 +169,27 @@ export default function WorkWithUsPage() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="section-padding relative border-t border-border/50">
+        <div className="container container-large">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <Eyebrow className="justify-center">Pricing</Eyebrow>
+            <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">What Does It Cost?</h2>
+            <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+              <p>
+                We do not publish fixed pricing because no two NovaDirect implementations are the same. A straightforward referral commission platform for a SaaS business looks very different from a multi-level direct selling platform with ecommerce, subscriptions, and global payouts.
+              </p>
+              <p>
+                What we can tell you is that our engagements are scoped fairly, transparently, and around what your business actually needs. Nothing more, nothing less.
+              </p>
+              <p>
+                The best way to understand what a NovaDirect engagement looks like for your business is to book a discovery call. No commitment, no pressure. Just a real conversation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CtaBand containerClass="container-large" />
     </>
   );

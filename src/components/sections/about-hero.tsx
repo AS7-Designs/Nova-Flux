@@ -1,5 +1,4 @@
 import { Eyebrow } from "@/components/elements/eyebrow";
-import { LogosMarquee } from "@/components/sections/logos";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/config";
 import { cn } from "@/lib/utils";
@@ -31,7 +30,7 @@ export default function AboutHero({
   className,
   containerClass,
   title = `About ${siteConfig.name}`,
-  description = `We built ${siteConfig.name} because sales teams deserve a CRM that thinks as fast as they move. Our mission is to turn every customer signal into your next deal — with AI that drafts follow-ups, scores opportunities, and keeps pipelines in motion.`,
+  description = "NovaDirect brings every part of your direct selling operation together into one modern platform, built specifically around the way your network works, all under your brand.",
   mainImage = {
     src: "/images/about/hero-team.webp",
     alt: `${siteConfig.name} team collaborating in a modern office`,
@@ -44,9 +43,9 @@ export default function AboutHero({
     src: siteConfig.logo.src,
     alt: siteConfig.name,
     title: siteConfig.tagline,
-    description: `${siteConfig.name} turns every customer signal into your next move — drafting follow-ups, scoring deals, and keeping your pipeline in motion, on autopilot.`,
-    buttonText: "Explore features",
-    buttonUrl: "/#features-showcase",
+    description: "From member management and product sales to commission automation and global payouts — all configured around your business.",
+    buttonText: "Explore the Platform",
+    buttonUrl: "/#platform",
   },
 }: AboutHeroProps) {
   return (
@@ -97,9 +96,6 @@ export default function AboutHero({
               </div>
             </div>
           </div>
-        </div>
-        <div className="pt-14 lg:pt-20">
-          <LogosMarquee />
         </div>
       </div>
     </section>

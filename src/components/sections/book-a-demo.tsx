@@ -189,7 +189,7 @@ const BookADemoTestimonials = ({ testimonials }: TestimonialsProps) => {
           </div>
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground">LinkedIn:</span>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-primary hover:underline">
+            <a href="https://www.linkedin.com/company/novadirectsoftware" target="_blank" rel="noreferrer" className="text-primary hover:underline">
               NovaDirect Software
             </a>
           </div>
