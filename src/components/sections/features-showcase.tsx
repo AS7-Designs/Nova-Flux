@@ -128,30 +128,31 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
   const SubIcon = layer.subIcon;
   const isLast = index === total - 1;
 
-  // Scroll phase calculation
-  // Total progress is [0, 1]
-  // First phase is header scrolling away, then cards 0..3 exit between 0.15 and 0.85
-  const stepSize = 0.70 / (total - 1);
-  const exitStart = 0.15 + index * stepSize;
-  const exitEnd = exitStart + stepSize * 0.75;
+  // Scroll phase calculation:
+  // Progress [0, 0.12]: Header slides up and deck centers
+  // Progress [0.12, 0.88]: Cards 0..3 exit sequentially
+  const stepSize = 0.76 / (total - 1);
+  const exitStart = 0.12 + index * stepSize;
+  const exitEnd = exitStart + stepSize * 0.70;
+  const fadeEnd = exitStart + stepSize * 0.45; // Fades out before reaching top navbar!
 
   // Exit transforms when card flips & slides up off the deck
-  const exitY = useTransform(progress, [exitStart, exitEnd], ["0%", "-120%"]);
-  const exitRotateX = useTransform(progress, [exitStart, exitEnd], [0, 10]);
-  const exitOpacity = useTransform(progress, [exitStart, exitEnd], [1, 0]);
+  const exitY = useTransform(progress, [exitStart, exitEnd], ["0px", "-280px"]);
+  const exitScale = useTransform(progress, [exitStart, exitEnd], [1, 0.94]);
+  const exitOpacity = useTransform(progress, [exitStart, fadeEnd], [1, 0]);
 
   // Base stack positioning (cards underneath at start)
   const baseScale = 1 - index * 0.035;
   const baseTranslateY = index * 10;
 
-  // Interpolation arrays for stepping forward
+  // Interpolation arrays for stepping forward as previous cards exit
   const breakpoints: number[] = [0];
   const scaleValues: number[] = [baseScale];
   const yValues: number[] = [baseTranslateY];
 
   for (let k = 0; k < index; k++) {
-    const kExitStart = 0.15 + k * stepSize;
-    const kExitEnd = kExitStart + stepSize * 0.75;
+    const kExitStart = 0.12 + k * stepSize;
+    const kExitEnd = kExitStart + stepSize * 0.70;
     const cardsAhead = index - (k + 1);
 
     breakpoints.push(kExitStart, kExitEnd);
@@ -163,7 +164,13 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
   scaleValues.push(scaleValues[scaleValues.length - 1]);
   yValues.push(yValues[yValues.length - 1]);
 
-  const currentScale = useTransform(progress, breakpoints, scaleValues);
+  const currentScale = useTransform(progress, (p: number) => {
+    if (!isLast && p >= exitStart) {
+      return exitScale.get();
+    }
+    return useTransform(progress, breakpoints, scaleValues).get();
+  });
+
   const currentStackY = useTransform(progress, breakpoints, yValues);
 
   const cardY = useTransform(progress, (p: number) => {
@@ -171,13 +178,6 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
       return exitY.get();
     }
     return `${currentStackY.get()}px`;
-  });
-
-  const cardRotateX = useTransform(progress, (p: number) => {
-    if (!isLast && p >= exitStart) {
-      return exitRotateX.get();
-    }
-    return 0;
   });
 
   const cardOpacity = useTransform(progress, (p: number) => {
@@ -198,42 +198,40 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
           : {
               y: cardY,
               scale: currentScale,
-              rotateX: cardRotateX,
               opacity: cardOpacity,
               zIndex,
-              perspective: 1000,
             }
       }
       className="absolute inset-x-0 top-0 origin-top"
     >
-      <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-6 md:p-8 lg:p-10 transition-all duration-300">
+      <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-5 md:p-7 lg:p-8 transition-all duration-300">
         <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
           {/* Content Column */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 space-y-3.5">
             <div className="flex items-center justify-between">
               <Eyebrow>{layer.eyebrow}</Eyebrow>
-              <span className="text-xs font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+              <span className="text-[11px] font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
                 LAYER {layer.number}
               </span>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-tight">
               {layer.title}
             </h3>
 
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
               {layer.description}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
               {layer.bullets.map((bullet, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs md:text-sm font-medium text-foreground transition-colors hover:bg-muted/70"
+                  className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground transition-colors hover:bg-muted/70"
                 >
-                  <CheckCircle2 className="size-4 text-primary shrink-0" />
+                  <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                   <span>{bullet}</span>
                 </div>
               ))}
@@ -242,22 +240,22 @@ function IndividualCard({ layer, index, total, progress, prefersReducedMotion }:
 
           {/* Right Feature Graphic */}
           <div className="lg:col-span-5">
-            <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 flex flex-col justify-between min-h-[200px] md:min-h-[240px]">
-              <div className="flex items-center justify-between mb-4">
-                <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                  <Icon className="size-6" />
+            <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-5 md:p-6 flex flex-col justify-between min-h-[170px] md:min-h-[200px]">
+              <div className="flex items-center justify-between mb-3">
+                <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <Icon className="size-5" />
                 </div>
-                <span className="text-[10px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2.5 py-1 rounded-md border border-border">
+                <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
                   {layer.badgeText}
                 </span>
               </div>
 
-              <div className="space-y-2 mt-auto">
-                <div className="flex items-center gap-2 text-xs font-semibold text-primary">
-                  <SubIcon className="size-4" />
+              <div className="space-y-1.5 mt-auto">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
+                  <SubIcon className="size-3.5" />
                   <span>{layer.stat}</span>
                 </div>
-                <p className="text-sm font-semibold text-foreground leading-snug">
+                <p className="text-xs md:text-sm font-semibold text-foreground leading-snug">
                   {layer.title}
                 </p>
               </div>
@@ -284,38 +282,38 @@ export default function FeaturesShowcase({
     offset: ["start start", "end end"],
   });
 
-  return (
-    <section id="platform" className={cn("py-12 md:py-16 relative overflow-hidden", className)}>
-      <div className={cn("container container-large", containerClass)}>
-        {/* Section Header */}
-        <motion.div
-          className="max-w-3xl space-y-2.5 mx-auto text-center mb-6 md:mb-8"
-          initial={prefersReducedMotion ? "visible" : "hidden"}
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { type: "spring", stiffness: 100, damping: 25 },
-            },
-          }}
-        >
-          <Eyebrow className="justify-center">The Platform</Eyebrow>
-          <h2 className="text-3xl tracking-tight md:text-4xl lg:text-5xl font-semibold text-foreground">
-            Every Layer of Your Business. One Platform.
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts, all configured around your business and all under your brand.
-          </p>
-        </motion.div>
+  // Header motion: slides up & fades out cleanly as scroll begins
+  const headerY = useTransform(scrollYProgress, [0, 0.10], [0, -100]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
-        {/* Scroll Track for Card Stack */}
-        <div ref={containerRef} className="relative h-[320vh]">
-          {/* Centered Sticky Container */}
-          <div className="sticky top-20 md:top-24 h-[calc(100vh-6rem)] flex items-center justify-center overflow-hidden">
-            <div className="relative w-full max-w-5xl mx-auto min-h-[420px] md:min-h-[460px]">
+  // Deck motion: translates up slightly to center as header moves out
+  const deckY = useTransform(scrollYProgress, [0, 0.10], [0, -50]);
+
+  return (
+    <section id="platform" className="py-8 md:py-12 relative overflow-hidden">
+      <div className={cn("container container-large", containerClass)}>
+        <div ref={containerRef} className="relative h-[340vh]">
+          {/* Sticky Frame */}
+          <div className="sticky top-20 md:top-24 h-[calc(100vh-6rem)] flex flex-col items-center justify-start pt-2 md:pt-4 overflow-hidden">
+            {/* Section Header */}
+            <motion.div
+              style={prefersReducedMotion ? undefined : { y: headerY, opacity: headerOpacity }}
+              className="max-w-3xl space-y-1.5 mx-auto text-center shrink-0 mb-3 md:mb-4"
+            >
+              <Eyebrow className="justify-center">The Platform</Eyebrow>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground tracking-tight">
+                Every Layer of Your Business. One Platform.
+              </h2>
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-2xl mx-auto">
+                NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts.
+              </p>
+            </motion.div>
+
+            {/* Deck Area: Placed right below header with tight mt-2 md:mt-3 */}
+            <motion.div
+              style={prefersReducedMotion ? undefined : { y: deckY }}
+              className="relative w-full max-w-5xl mx-auto mt-2 md:mt-3 min-h-[380px] md:min-h-[420px]"
+            >
               {layers.map((layer, index) => (
                 <IndividualCard
                   key={layer.id}
@@ -326,7 +324,7 @@ export default function FeaturesShowcase({
                   prefersReducedMotion={prefersReducedMotion}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
