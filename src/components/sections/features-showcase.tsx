@@ -226,7 +226,7 @@ export default function FeaturesShowcase({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: stage,
-        start: "top 12%",
+        start: "top top",
         end: `+=${totalScroll}`,
         pin: true,
         scrub: 1,
@@ -239,7 +239,7 @@ export default function FeaturesShowcase({
       header,
       {
         opacity: 0,
-        y: -60,
+        y: -50,
         duration: 0.12,
         ease: "power2.in",
       },
@@ -287,43 +287,43 @@ export default function FeaturesShowcase({
 
   return (
     <section id="platform" className={cn("relative", className)}>
-      {/* Section Header */}
-      <div ref={headerRef} className="pt-12 md:pt-16">
-        <div
-          className={cn(
-            "container container-large text-center",
-            containerClass
-          )}
-        >
-          <div className="max-w-3xl mx-auto space-y-2.5">
-            <Eyebrow className="justify-center">The Platform</Eyebrow>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-foreground tracking-tight">
-              Every Layer of Your Business. One Platform.
-            </h2>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              NovaDirect covers every layer of your direct selling operation,
-              from member management and product sales to commission automation
-              and global payouts, all configured around your business and all
-              under your brand.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* 40px spacer between header and first card */}
-      <div style={{ height: "40px" }} />
-
       {/* Pinned Cards Stage */}
       <div
         ref={stageRef}
-        className="relative overflow-hidden"
-        style={{ height: "88vh" }}
+        className="relative h-screen overflow-hidden flex items-center justify-center"
       >
+        {/* Section Header */}
+        <div
+          ref={headerRef}
+          className="absolute top-0 left-0 right-0 z-20 pt-12 md:pt-16"
+        >
+          <div
+            className={cn(
+              "container container-large text-center",
+              containerClass
+            )}
+          >
+            <div className="max-w-3xl mx-auto space-y-2">
+              <Eyebrow className="justify-center">The Platform</Eyebrow>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground tracking-tight">
+                Every Layer of Your Business. One Platform.
+              </h2>
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-xl mx-auto">
+                NovaDirect covers every layer of your direct selling operation,
+                from member management and product sales to commission automation
+                and global payouts, all configured around your business and all
+                under your brand.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Cards */}
         {layers.map((layer, index) => (
           <div
             key={layer.id}
             ref={setCardRef(index)}
-            className="absolute inset-0 flex items-start justify-center pt-8 md:pt-14 px-4"
+            className="absolute inset-0 flex items-center justify-center px-4"
           >
             <div className="w-full max-w-6xl mx-auto">
               <LayerCard layer={layer} />
