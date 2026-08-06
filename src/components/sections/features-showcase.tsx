@@ -287,7 +287,7 @@ export default function FeaturesShowcase({
       {/* Section Header - scrolls naturally, fades via GSAP */}
       <div
         ref={headerRef}
-        className="py-16 md:py-20"
+        className="pt-16 pb-2 md:pt-20 md:pb-4"
       >
         <div className={cn("container container-large text-center", containerClass)}>
           <div className="max-w-3xl mx-auto space-y-2.5">
