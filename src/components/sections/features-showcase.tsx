@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -117,132 +117,72 @@ const layers = [
   },
 ];
 
-/* ─── Individual Stacking Card ─── */
+/* ─── Card Content Component ─── */
 
-interface StackCardProps {
-  layer: (typeof layers)[0];
-  index: number;
-  totalCards: number;
-}
-
-function StackCard({ layer, index, totalCards }: StackCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
   const Icon = layer.icon;
   const SubIcon = layer.subIcon;
 
-  useEffect(() => {
-    const card = cardRef.current;
-    const container = containerRef.current;
-    if (!card || !container) return;
-
-    const targetScale = 1 - (totalCards - index) * 0.05;
-
-    gsap.set(card, {
-      scale: 1,
-      transformOrigin: "center top",
-    });
-
-    const trigger = ScrollTrigger.create({
-      trigger: container,
-      start: "top center",
-      end: "bottom center",
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const scale = gsap.utils.interpolate(1, targetScale, progress);
-        gsap.set(card, {
-          scale: Math.max(scale, targetScale),
-          transformOrigin: "center top",
-        });
-      },
-    });
-
-    return () => {
-      trigger.kill();
-    };
-  }, [index, totalCards]);
-
   return (
-    <div
-      ref={containerRef}
-      className="flex items-center justify-center"
-      style={{
-        height: "100vh",
-        position: "sticky",
-        top: 0,
-      }}
-    >
-      <div
-        ref={cardRef}
-        className="w-[92%] md:w-[82%] lg:w-[72%] mx-auto"
-        style={{
-          position: "relative",
-          top: `calc(-5vh + ${index * 25}px)`,
-          transformOrigin: "top",
-        }}
-      >
-        <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-5 md:p-7 lg:p-8">
-          <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+    <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-5 md:p-7 lg:p-8">
+      <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
-            {/* Content Column */}
-            <div className="lg:col-span-7 space-y-3.5">
-              <div className="flex items-center justify-between">
-                <Eyebrow>{layer.eyebrow}</Eyebrow>
-                <span className="text-[11px] font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
-                  LAYER {layer.number}
-                </span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        {/* Content Column */}
+        <div className="lg:col-span-7 space-y-3.5">
+          <div className="flex items-center justify-between">
+            <Eyebrow>{layer.eyebrow}</Eyebrow>
+            <span className="text-[11px] font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
+              LAYER {layer.number}
+            </span>
+          </div>
+
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-tight">
+            {layer.title}
+          </h3>
+
+          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
+            {layer.description}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            {layer.bullets.map((bullet, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground transition-colors hover:bg-muted/70"
+              >
+                <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                <span>{bullet}</span>
               </div>
+            ))}
+          </div>
+        </div>
 
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-tight">
-                {layer.title}
-              </h3>
-
-              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
-                {layer.description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                {layer.bullets.map((bullet, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground transition-colors hover:bg-muted/70"
-                  >
-                    <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                    <span>{bullet}</span>
-                  </div>
-                ))}
+        {/* Right Feature Graphic */}
+        <div className="lg:col-span-5">
+          <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-5 md:p-6 flex flex-col justify-between min-h-[170px] md:min-h-[200px]">
+            <div className="flex items-center justify-between mb-3">
+              <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                <Icon className="size-5" />
               </div>
+              <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+                {layer.badgeText}
+              </span>
             </div>
 
-            {/* Right Feature Graphic */}
-            <div className="lg:col-span-5">
-              <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-5 md:p-6 flex flex-col justify-between min-h-[170px] md:min-h-[200px]">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                    <Icon className="size-5" />
-                  </div>
-                  <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
-                    {layer.badgeText}
-                  </span>
-                </div>
-
-                <div className="space-y-1.5 mt-auto">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
-                    <SubIcon className="size-3.5" />
-                    <span>{layer.stat}</span>
-                  </div>
-                  <p className="text-xs md:text-sm font-semibold text-foreground leading-snug">
-                    {layer.title}
-                  </p>
-                </div>
+            <div className="space-y-1.5 mt-auto">
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
+                <SubIcon className="size-3.5" />
+                <span>{layer.stat}</span>
               </div>
+              <p className="text-xs md:text-sm font-semibold text-foreground leading-snug">
+                {layer.title}
+              </p>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -256,61 +196,141 @@ export default function FeaturesShowcase({
   containerClass?: string;
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
-  const cardsWrapperRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const setCardRef = useCallback(
+    (index: number) => (el: HTMLDivElement | null) => {
+      cardRefs.current[index] = el;
+    },
+    []
+  );
 
   useEffect(() => {
     const header = headerRef.current;
-    const cardsWrapper = cardsWrapperRef.current;
-    if (!header || !cardsWrapper) return;
+    const stage = stageRef.current;
+    const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (!header || !stage || cards.length === 0) return;
 
-    // Fade out the section header as user scrolls into the cards area
-    const headerTrigger = ScrollTrigger.create({
-      trigger: cardsWrapper,
-      start: "top 80%",
-      end: "top 20%",
-      scrub: true,
-      onUpdate: (self) => {
-        gsap.set(header, {
-          opacity: 1 - self.progress,
-          y: -40 * self.progress,
-        });
+    // Initial state: all cards except first are pushed off-screen below
+    cards.forEach((card, i) => {
+      if (i === 0) {
+        gsap.set(card, { yPercent: 0, scale: 1, zIndex: 1 });
+      } else {
+        gsap.set(card, { yPercent: 110, scale: 1, zIndex: i + 1 });
+      }
+    });
+
+    const scrollPerCard = window.innerHeight * 0.8;
+    const totalScroll = cards.length * scrollPerCard;
+
+    // Main pinned timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top 12%",
+        end: `+=${totalScroll}`,
+        pin: true,
+        scrub: 1,
+        pinSpacing: true,
       },
     });
 
+    // Fade out the header during the first segment
+    tl.to(
+      header,
+      {
+        opacity: 0,
+        y: -60,
+        duration: 0.12,
+        ease: "power2.in",
+      },
+      0
+    );
+
+    // Card transitions: each card slides up from below
+    const segmentDuration = 1 / cards.length;
+
+    for (let i = 1; i < cards.length; i++) {
+      const startTime = i * segmentDuration;
+
+      // Slide new card in from below, landing on top
+      tl.to(
+        cards[i],
+        {
+          yPercent: 0,
+          duration: segmentDuration * 0.8,
+          ease: "power2.out",
+        },
+        startTime
+      );
+
+      // Scale down and shift all previously visible cards to create "peeking" depth
+      for (let j = i - 1; j >= 0; j--) {
+        const depth = i - j; // how many layers back this card is
+        tl.to(
+          cards[j],
+          {
+            scale: 1 - depth * 0.035,
+            y: -depth * 14,
+            duration: segmentDuration * 0.8,
+            ease: "power2.out",
+          },
+          startTime
+        );
+      }
+    }
+
     return () => {
-      headerTrigger.kill();
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
   return (
     <section id="platform" className={cn("relative", className)}>
-      {/* Section Header - scrolls naturally, fades via GSAP */}
-      <div
-        ref={headerRef}
-        className="pt-16 pb-2 md:pt-20 md:pb-4"
-      >
-        <div className={cn("container container-large text-center", containerClass)}>
+      {/* Section Header */}
+      <div ref={headerRef} className="pt-20 md:pt-28">
+        <div
+          className={cn(
+            "container container-large text-center",
+            containerClass
+          )}
+        >
           <div className="max-w-3xl mx-auto space-y-2.5">
             <Eyebrow className="justify-center">The Platform</Eyebrow>
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-foreground tracking-tight">
               Every Layer of Your Business. One Platform.
             </h2>
             <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              NovaDirect covers every layer of your direct selling operation, from member management and product sales to commission automation and global payouts, all configured around your business and all under your brand.
+              NovaDirect covers every layer of your direct selling operation,
+              from member management and product sales to commission automation
+              and global payouts, all configured around your business and all
+              under your brand.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Stacking Cards - each card is in its own 100vh sticky container */}
-      <div ref={cardsWrapperRef}>
+      {/* 100px spacer between header and first card */}
+      <div style={{ height: "100px" }} />
+
+      {/* Pinned Cards Stage */}
+      <div
+        ref={stageRef}
+        className="relative overflow-hidden"
+        style={{ height: "78vh" }}
+      >
         {layers.map((layer, index) => (
-          <StackCard
+          <div
             key={layer.id}
-            layer={layer}
-            index={index}
-            totalCards={layers.length}
-          />
+            ref={setCardRef(index)}
+            className="absolute inset-0 flex items-center justify-center px-4"
+          >
+            <div className="w-full max-w-6xl mx-auto">
+              <LayerCard layer={layer} />
+            </div>
+          </div>
         ))}
       </div>
     </section>
