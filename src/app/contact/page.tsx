@@ -47,7 +47,7 @@ export default function ContactPage() {
   return (
     <>
       <BookADemo
-        className="page-top-padding !pb-0"
+        className="page-top-padding pb-16 md:pb-24"
         header={{
           heading: "Let's Talk About Your Business",
           description: {

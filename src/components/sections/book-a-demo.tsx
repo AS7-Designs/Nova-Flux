@@ -266,7 +266,7 @@ const BookADemo = ({
         <div className="flex justify-center">
           <BookADemoHeader {...header} />
         </div>
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 rounded-lg border lg:grid-cols-2">
+        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 rounded-2xl md:rounded-3xl border border-border/70 overflow-hidden shadow-sm lg:grid-cols-2">
           <BookADemoContactForm />
           <BookADemoTestimonials testimonials={testimonials} />
         </div>
