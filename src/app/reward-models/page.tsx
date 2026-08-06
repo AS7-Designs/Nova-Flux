@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { Award, CheckCircle2, Layers, Repeat, ShieldCheck, TrendingUp, UserPlus } from "lucide-react";
 
 import { Eyebrow } from "@/components/elements/eyebrow";
+import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
 import { FluxWavePattern } from "@/components/elements/flux-wave-pattern";
 import CtaBand from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/data/config";
 import { cn } from "@/lib/utils";
 
@@ -14,12 +15,10 @@ export const metadata: Metadata = {
     "Reward your network the way your business was designed to. Custom commission logic, multi-level structures, matching bonuses, recurring rewards, and leadership pools.",
 };
 
-import { Award, CheckCircle2, Layers, Repeat, TrendingUp, UserPlus } from "lucide-react";
-
 const REWARD_MODELS = [
   {
     icon: UserPlus,
-    badge: "MODEL 01",
+    eyebrow: "01 — DIRECT REVENUE",
     title: "Reward People for Bringing Others In",
     description: "When someone refers a new member, customer, or partner, they should be rewarded for it immediately and accurately.",
     items: [
@@ -29,10 +28,11 @@ const REWARD_MODELS = [
       "Enroller Based Rewards",
     ],
     spanClass: "lg:col-span-7",
+    colsClass: "grid-cols-1 sm:grid-cols-2",
   },
   {
     icon: TrendingUp,
-    badge: "MODEL 02",
+    eyebrow: "02 — TEAM PERFORMANCE",
     title: "Reward People for Network Performance",
     description: "As your members build their own teams, their rewards should reflect the growth happening beneath them, not just their own direct activity.",
     items: [
@@ -42,10 +42,11 @@ const REWARD_MODELS = [
       "Differential Commissions",
     ],
     spanClass: "lg:col-span-5",
+    colsClass: "grid-cols-1",
   },
   {
     icon: Repeat,
-    badge: "MODEL 03",
+    eyebrow: "03 — RECURRING LOYALTY",
     title: "Reward Consistency & Long Term Loyalty",
     description: "Businesses built on memberships and subscriptions need a commission model that rewards recurring activity, not just one-time transactions.",
     items: [
@@ -55,10 +56,11 @@ const REWARD_MODELS = [
       "Renewal Bonuses",
     ],
     spanClass: "lg:col-span-5",
+    colsClass: "grid-cols-1",
   },
   {
     icon: Award,
-    badge: "MODEL 04",
+    eyebrow: "04 — EXECUTIVE RANKS",
     title: "Reward Your Top Performers Differently",
     description: "Your highest performing members deserve recognition beyond standard commissions. Structured rank and achievement systems keep your best people moving forward.",
     items: [
@@ -68,19 +70,7 @@ const REWARD_MODELS = [
       "Performance Based Incentives",
     ],
     spanClass: "lg:col-span-7",
-  },
-  {
-    icon: Layers,
-    badge: "MODEL 05",
-    title: "Reward Team Growth & Collective Volume",
-    description: "Reflect the collective performance of a team or network structure, not just individual referrals, through team-based reward models.",
-    items: [
-      "Team Volume Commissions",
-      "Network Performance Rewards",
-      "Structured Plan Based Commissions",
-      "Pool and Shared Bonus Models",
-    ],
-    spanClass: "lg:col-span-12",
+    colsClass: "grid-cols-1 sm:grid-cols-2",
   },
 ];
 
@@ -117,8 +107,8 @@ export default function RewardModelsPage() {
 
       {/* Reward Models Bento Grid */}
       <section className="section-padding relative">
-        <div className="container container-large">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <div className="container container-large space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
             <Eyebrow className="justify-center">Tailored Compensation</Eyebrow>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
               How Do You Want to Reward Your Network?
@@ -139,18 +129,20 @@ export default function RewardModelsPage() {
                     model.spanClass
                   )}
                 >
+                  <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+
                   <div className="relative z-10 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                         <Icon className="size-5" />
                       </div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
-                        {model.badge}
+                      <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                        {model.eyebrow}
                       </span>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                    <div className="space-y-2">
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
                         {model.title}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
@@ -160,12 +152,15 @@ export default function RewardModelsPage() {
                   </div>
 
                   <div className="relative z-10 mt-6 pt-6 border-t border-border/50 space-y-3">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
                       What this looks like in NovaDirect:
                     </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className={cn("grid gap-2.5", model.colsClass)}>
                       {model.items.map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                        >
                           <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                           <span>{item}</span>
                         </div>
@@ -175,11 +170,87 @@ export default function RewardModelsPage() {
                 </div>
               );
             })}
+
+            {/* Model 05 - Full Width Hero Bento Card */}
+            <div className="lg:col-span-12 relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/40">
+              <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left Content */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <Layers className="size-5" />
+                    </div>
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                      05 — NETWORK STRUCTURE
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
+                      Reward Team Growth & Collective Volume
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                      Reflect the collective performance of a team or network structure, not just individual referrals, through team-based reward models.
+                    </p>
+                  </div>
+
+                  <div className="pt-2 space-y-3">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                      What this looks like in NovaDirect:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {[
+                        "Team Volume Commissions",
+                        "Network Performance Rewards",
+                        "Structured Plan Based Commissions",
+                        "Pool and Shared Bonus Models",
+                      ].map((item, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                        >
+                          <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Visual Graphic */}
+                <div className="lg:col-span-5">
+                  <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between min-h-[220px]">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <ShieldCheck className="size-4 text-primary" />
+                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">
+                          Collective Volume Engine
+                        </span>
+                      </div>
+                      <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+                        Automated
+                      </span>
+                    </div>
+
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
+                    </p>
+
+                    <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
+                      <span className="text-muted-foreground">Volume Sync:</span>
+                      <span className="font-semibold text-primary">Instant & Audit-Ready</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Consultation Section (Not a card) */}
+      {/* Consultation Section */}
       <section className="py-16 md:py-20 bg-card/50 border-y border-border/50 relative overflow-hidden">
         <div className="container container-large relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -194,39 +265,6 @@ export default function RewardModelsPage() {
               <Button size="lg" className="rounded-full px-8" asChild>
                 <a href="/contact">Schedule a Discovery Call</a>
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Commission Engine Section */}
-      <section className="section-padding bg-card/30 border-t border-border/50">
-        <div className="container container-large">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="text-center space-y-3">
-              <Eyebrow className="justify-center">Engine</Eyebrow>
-              <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
-                Commission Engine: Built to Handle Whatever You Design
-              </h2>
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                Behind every compensation model on NovaDirect is a commission engine built for accuracy, speed, and flexibility. Whether your plan is straightforward or highly complex, the engine handles the calculation, the timing, and the payout automatically.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                "Custom commission logic for any business model",
-                "Accurate calculations across multiple levels and structures",
-                "Automated payout triggers and approval workflows",
-                "Full audit trail and commission history",
-              ].map((feat, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-card border border-border/60 flex items-center gap-3">
-                  <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
-                    ✓
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{feat}</span>
-                </div>
-              ))}
             </div>
           </div>
         </div>
