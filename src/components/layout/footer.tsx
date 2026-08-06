@@ -202,7 +202,7 @@ export default function Footer({
   if (hideFooter) return null;
 
   return (
-    <footer className={cn("relative overflow-hidden border-t border-white/10 bg-black py-32 text-white", className)}>
+    <footer className={cn("relative overflow-hidden border-t border-white/10 bg-black pt-16 md:pt-20 pb-10 text-white", className)}>
 
       {/* Wave pattern underlay */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03]">
@@ -223,7 +223,7 @@ export default function Footer({
       </div>
 
       <div className="relative z-10 container">
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-12 md:gap-14">
           <div className="flex flex-col justify-between gap-10 lg:flex-row">
             <div className="flex flex-col items-start">
               <Logo inverted />
