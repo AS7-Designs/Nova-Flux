@@ -211,14 +211,14 @@ export default function FeaturesShowcase({
 
     // Initial state:
     // Header is centered in stage (via CSS flex items-center justify-center)
-    gsap.set(header, { opacity: 1, y: 0, scale: 1 });
+    gsap.set(header, { opacity: 1, y: 0, scale: 1, zIndex: 0 });
 
-    // ALL cards start off-screen below the viewport
+    // ALL cards start off-screen below the viewport with higher zIndex than header
     cards.forEach((card, i) => {
       gsap.set(card, {
         y: window.innerHeight,
         scale: 1,
-        zIndex: i + 1,
+        zIndex: i + 10,
         transformOrigin: "top center",
       });
     });
@@ -311,7 +311,7 @@ export default function FeaturesShowcase({
         {/* Step 1: Centered Section Header */}
         <div
           ref={headerRef}
-          className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center z-10 pointer-events-none"
+          className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center z-0 pointer-events-none"
         >
           <div className="max-w-3xl mx-auto space-y-3">
             <Eyebrow className="justify-center">The Platform</Eyebrow>
