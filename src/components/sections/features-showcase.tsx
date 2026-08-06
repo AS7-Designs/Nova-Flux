@@ -212,9 +212,9 @@ export default function FeaturesShowcase({
     // Initial state: all cards except first are pushed off-screen below
     cards.forEach((card, i) => {
       if (i === 0) {
-        gsap.set(card, { yPercent: 0, scale: 1, zIndex: 1 });
+        gsap.set(card, { y: 0, scale: 1, zIndex: 1 });
       } else {
-        gsap.set(card, { yPercent: 110, scale: 1, zIndex: i + 1 });
+        gsap.set(card, { y: window.innerHeight, scale: 1, zIndex: i + 1 });
       }
     });
 
@@ -255,7 +255,7 @@ export default function FeaturesShowcase({
       tl.to(
         cards[i],
         {
-          yPercent: 0,
+          y: 0,
           duration: segmentDuration * 0.8,
           ease: "power2.out",
         },
