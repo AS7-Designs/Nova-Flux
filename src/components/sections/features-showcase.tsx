@@ -209,20 +209,25 @@ export default function FeaturesShowcase({
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!header || !stage || cards.length === 0) return;
 
-    // Initial state: all cards except first are pushed off-screen below
+    // Initial state:
+    // Header is centered in stage (via CSS flex items-center justify-center)
+    gsap.set(header, { opacity: 1, y: 0, scale: 1 });
+
+    // ALL cards start off-screen below the viewport
     cards.forEach((card, i) => {
-      gsap.set(card, { transformOrigin: "top center" });
-      if (i === 0) {
-        gsap.set(card, { y: 0, scale: 1, zIndex: 1 });
-      } else {
-        gsap.set(card, { y: window.innerHeight, scale: 1, zIndex: i + 1 });
-      }
+      gsap.set(card, {
+        y: window.innerHeight,
+        scale: 1,
+        zIndex: i + 1,
+        transformOrigin: "top center",
+      });
     });
 
-    const scrollPerCard = window.innerHeight * 0.8;
-    const totalScroll = cards.length * scrollPerCard;
+    // 5 step transitions: header->card0, card0->card1, card1->card2, card2->card3, card3->card4
+    const numTransitions = cards.length;
+    const scrollPerStep = window.innerHeight * 0.85;
+    const totalScroll = numTransitions * scrollPerStep;
 
-    // Main pinned timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: stage,
@@ -234,30 +239,41 @@ export default function FeaturesShowcase({
       },
     });
 
-    // Fade out the header during the first segment
+    const stepDuration = 1 / numTransitions;
+
+    // Step 0: Header fades away while Card 0 slides in to center of viewport
     tl.to(
       header,
       {
         opacity: 0,
-        y: -50,
-        duration: 0.12,
-        ease: "power2.in",
+        y: -40,
+        scale: 0.95,
+        duration: stepDuration * 0.8,
+        ease: "power2.inOut",
       },
       0
     );
 
-    // Card transitions: each card slides up from below
-    const segmentDuration = 1 / cards.length;
+    tl.to(
+      cards[0],
+      {
+        y: 0,
+        duration: stepDuration * 0.8,
+        ease: "power2.out",
+      },
+      0
+    );
 
+    // Steps 1 to 4: Each subsequent card slides in and stacks on previous cards
     for (let i = 1; i < cards.length; i++) {
-      const startTime = i * segmentDuration;
+      const startTime = i * stepDuration;
 
-      // Slide new card in from below, landing on top
+      // Card i slides up to center
       tl.to(
         cards[i],
         {
           y: 0,
-          duration: segmentDuration * 0.8,
+          duration: stepDuration * 0.8,
           ease: "power2.out",
         },
         startTime
@@ -265,13 +281,13 @@ export default function FeaturesShowcase({
 
       // Scale down and shift all previously visible cards to create "peeking" depth
       for (let j = i - 1; j >= 0; j--) {
-        const depth = i - j; // how many layers back this card is
+        const depth = i - j;
         tl.to(
           cards[j],
           {
             scale: 1 - depth * 0.03,
             y: -depth * 18,
-            duration: segmentDuration * 0.8,
+            duration: stepDuration * 0.8,
             ease: "power2.out",
           },
           startTime
@@ -287,43 +303,36 @@ export default function FeaturesShowcase({
 
   return (
     <section id="platform" className={cn("relative", className)}>
-      {/* Pinned Cards Stage */}
+      {/* Pinned Stage (100vh) */}
       <div
         ref={stageRef}
         className="relative h-screen overflow-hidden flex items-center justify-center"
       >
-        {/* Section Header */}
+        {/* Step 1: Centered Section Header */}
         <div
           ref={headerRef}
-          className="absolute top-0 left-0 right-0 z-20 pt-12 md:pt-16"
+          className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center z-10 pointer-events-none"
         >
-          <div
-            className={cn(
-              "container container-large text-center",
-              containerClass
-            )}
-          >
-            <div className="max-w-3xl mx-auto space-y-2">
-              <Eyebrow className="justify-center">The Platform</Eyebrow>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground tracking-tight">
-                Every Layer of Your Business. One Platform.
-              </h2>
-              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-xl mx-auto">
-                NovaDirect covers every layer of your direct selling operation,
-                from member management and product sales to commission automation
-                and global payouts, all configured around your business and all
-                under your brand.
-              </p>
-            </div>
+          <div className="max-w-3xl mx-auto space-y-3">
+            <Eyebrow className="justify-center">The Platform</Eyebrow>
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-foreground tracking-tight">
+              Every Layer of Your Business. One Platform.
+            </h2>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+              NovaDirect covers every layer of your direct selling operation,
+              from member management and product sales to commission automation
+              and global payouts, all configured around your business and all
+              under your brand.
+            </p>
           </div>
         </div>
 
-        {/* Cards */}
+        {/* Step 2+: Stacked Cards (Centered in viewport) */}
         {layers.map((layer, index) => (
           <div
             key={layer.id}
             ref={setCardRef(index)}
-            className="absolute inset-0 flex items-center justify-center px-4"
+            className="absolute inset-0 flex items-center justify-center px-4 z-20"
           >
             <div className="w-full max-w-6xl mx-auto">
               <LayerCard layer={layer} />
