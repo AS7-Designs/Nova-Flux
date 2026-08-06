@@ -13,10 +13,13 @@ export const metadata: Metadata = {
     "Reward your network the way your business was designed to. Custom commission logic, multi-level structures, matching bonuses, recurring rewards, and leadership pools.",
 };
 
+import { Award, CheckCircle2, Layers, Repeat, TrendingUp, UserPlus } from "lucide-react";
+
 const REWARD_MODELS = [
   {
+    icon: UserPlus,
+    badge: "MODEL 01",
     title: "Reward People for Bringing Others In",
-    tagline: "The most fundamental part of any network.",
     description: "When someone refers a new member, customer, or partner, they should be rewarded for it immediately and accurately.",
     items: [
       "Direct Referral Commissions",
@@ -24,10 +27,12 @@ const REWARD_MODELS = [
       "First Purchase Commissions",
       "Enroller Based Rewards",
     ],
+    spanClass: "lg:col-span-7",
   },
   {
+    icon: TrendingUp,
+    badge: "MODEL 02",
     title: "Reward People for Network Performance",
-    tagline: "Drive growth as members build teams.",
     description: "As your members build their own teams, their rewards should reflect the growth happening beneath them, not just their own direct activity.",
     items: [
       "Multi-level Commission Structures",
@@ -35,21 +40,25 @@ const REWARD_MODELS = [
       "Generation Based Commissions",
       "Differential Commissions",
     ],
+    spanClass: "lg:col-span-5",
   },
   {
+    icon: Repeat,
+    badge: "MODEL 03",
     title: "Reward Consistency & Long Term Loyalty",
-    tagline: "Sustained revenue from subscriptions.",
     description: "Businesses built on memberships and subscriptions need a commission model that rewards recurring activity, not just one-time transactions.",
     items: [
       "Recurring Subscription Commissions",
-      "Monthly and Annual Reward Cycles",
+      "Monthly & Annual Reward Cycles",
       "Loyalty Based Incentives",
       "Renewal Bonuses",
     ],
+    spanClass: "lg:col-span-5",
   },
   {
+    icon: Award,
+    badge: "MODEL 04",
     title: "Reward Your Top Performers Differently",
-    tagline: "Keep leadership motivated.",
     description: "Your highest performing members deserve recognition beyond standard commissions. Structured rank and achievement systems keep your best people moving forward.",
     items: [
       "Rank Advancement Bonuses",
@@ -57,10 +66,12 @@ const REWARD_MODELS = [
       "Achievement Awards",
       "Performance Based Incentives",
     ],
+    spanClass: "lg:col-span-7",
   },
   {
+    icon: Layers,
+    badge: "MODEL 05",
     title: "Reward Team Growth & Collective Volume",
-    tagline: "Structure-wide team incentives.",
     description: "Reflect the collective performance of a team or network structure, not just individual referrals, through team-based reward models.",
     items: [
       "Team Volume Commissions",
@@ -68,6 +79,7 @@ const REWARD_MODELS = [
       "Structured Plan Based Commissions",
       "Pool and Shared Bonus Models",
     ],
+    spanClass: "lg:col-span-12",
   },
 ];
 
@@ -102,41 +114,66 @@ export default function RewardModelsPage() {
         </div>
       </section>
 
-      {/* Reward Models Grid */}
+      {/* Reward Models Bento Grid */}
       <section className="section-padding relative">
         <div className="container container-large">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight uppercase text-foreground">
-              HOW DO YOU WANT TO REWARD YOUR NETWORK?
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <Eyebrow className="justify-center">Tailored Compensation</Eyebrow>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
+              How Do You Want to Reward Your Network?
             </h2>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+              Select from proven reward mechanics or combine them to craft a unique compensation model tailored to your business goals.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {REWARD_MODELS.map((model, idx) => (
-              <Card key={idx} className="border-border/60 bg-card p-6 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
-                <CardHeader className="p-0 space-y-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                    Model 0{idx + 1}
-                  </span>
-                  <CardTitle className="text-2xl font-semibold tracking-tight">{model.title}</CardTitle>
-                  <p className="text-muted-foreground text-base leading-relaxed">
-                    {model.description}
-                  </p>
-                </CardHeader>
-                <CardContent className="p-0 mt-6 pt-6 border-t border-border/40">
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/80 mb-3">
-                    What this looks like in NovaDirect:
-                  </h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {model.items.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="size-1.5 rounded-full bg-primary shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {REWARD_MODELS.map((model, idx) => {
+              const Icon = model.icon;
+              return (
+                <div
+                  key={idx}
+                  className={cn(
+                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
+                    model.spanClass
+                  )}
+                >
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                        <Icon className="size-5" />
+                      </div>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+                        {model.badge}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                        {model.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {model.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 mt-6 pt-6 border-t border-border/50 space-y-3">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                      What this looks like in NovaDirect:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {model.items.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                          <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -168,7 +205,7 @@ export default function RewardModelsPage() {
             <div className="text-center space-y-3">
               <Eyebrow className="justify-center">Engine</Eyebrow>
               <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
-                COMMISSION ENGINE: Built to Handle Whatever You Design
+                Commission Engine: Built to Handle Whatever You Design
               </h2>
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                 Behind every compensation model on NovaDirect is a commission engine built for accuracy, speed, and flexibility. Whether your plan is straightforward or highly complex, the engine handles the calculation, the timing, and the payout automatically.
