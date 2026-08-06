@@ -125,33 +125,34 @@ export default function RewardModelsPage() {
                 <div
                   key={idx}
                   className={cn(
-                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
+                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col transition-colors hover:border-primary/40",
                     model.spanClass
                   )}
                 >
                   <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-                  <div className="relative z-10 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                        <Icon className="size-5" />
-                      </div>
-                      <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
-                        {model.eyebrow}
-                      </span>
+                  {/* Top Bar */}
+                  <div className="relative z-10 flex items-center justify-between mb-4">
+                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <Icon className="size-5" />
                     </div>
-
-                    <div className="space-y-2">
-                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
-                        {model.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {model.description}
-                      </p>
-                    </div>
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                      {model.eyebrow}
+                    </span>
                   </div>
 
-                  <div className="relative z-10 mt-6 pt-6 border-t border-border/50 space-y-3">
+                  {/* Body Content */}
+                  <div className="relative z-10 space-y-2.5 mb-6">
+                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
+                      {model.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {model.description}
+                    </p>
+                  </div>
+
+                  {/* Bottom Items */}
+                  <div className="relative z-10 mt-auto pt-5 border-t border-border/50 space-y-3">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
                       What this looks like in NovaDirect:
                     </span>
@@ -175,72 +176,75 @@ export default function RewardModelsPage() {
             <div className="lg:col-span-12 relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/40">
               <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Left Content */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                      <Layers className="size-5" />
-                    </div>
-                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
-                      05 — NETWORK STRUCTURE
-                    </span>
+              <div className="relative z-10 space-y-6">
+                {/* Top Header Bar across full width */}
+                <div className="flex items-center justify-between">
+                  <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <Layers className="size-5" />
                   </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
-                      Reward Team Growth & Collective Volume
-                    </h3>
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                      Reflect the collective performance of a team or network structure, not just individual referrals, through team-based reward models.
-                    </p>
-                  </div>
-
-                  <div className="pt-2 space-y-3">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
-                      What this looks like in NovaDirect:
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {[
-                        "Team Volume Commissions",
-                        "Network Performance Rewards",
-                        "Structured Plan Based Commissions",
-                        "Pool and Shared Bonus Models",
-                      ].map((item, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
-                        >
-                          <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                    05 — NETWORK STRUCTURE
+                  </span>
                 </div>
 
-                {/* Right Visual Graphic */}
-                <div className="lg:col-span-5">
-                  <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between min-h-[220px]">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <ShieldCheck className="size-4 text-primary" />
-                        <span className="text-xs font-bold text-foreground uppercase tracking-wider">
-                          Collective Volume Engine
-                        </span>
-                      </div>
-                      <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
-                        Automated
-                      </span>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Content */}
+                  <div className="lg:col-span-7 space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
+                        Reward Team Growth & Collective Volume
+                      </h3>
+                      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                        Reflect the collective performance of a team or network structure, not just individual referrals, through team-based reward models.
+                      </p>
                     </div>
 
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
-                    </p>
+                    <div className="pt-4 border-t border-border/50 space-y-3">
+                      <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                        What this looks like in NovaDirect:
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {[
+                          "Team Volume Commissions",
+                          "Network Performance Rewards",
+                          "Structured Plan Based Commissions",
+                          "Pool and Shared Bonus Models",
+                        ].map((item, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                          >
+                            <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
 
-                    <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground">Volume Sync:</span>
-                      <span className="font-semibold text-primary">Instant & Audit-Ready</span>
+                  {/* Right Visual Graphic */}
+                  <div className="lg:col-span-5">
+                    <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between min-h-[220px]">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck className="size-4 text-primary" />
+                          <span className="text-xs font-bold text-foreground uppercase tracking-wider">
+                            Collective Volume Engine
+                          </span>
+                        </div>
+                        <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+                          Automated
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
+                      </p>
+
+                      <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
+                        <span className="text-muted-foreground">Volume Sync:</span>
+                        <span className="font-semibold text-primary">Instant & Audit-Ready</span>
+                      </div>
                     </div>
                   </div>
                 </div>
