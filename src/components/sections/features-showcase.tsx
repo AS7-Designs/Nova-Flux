@@ -124,7 +124,7 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
   const SubIcon = layer.subIcon;
 
   return (
-    <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground shadow-xl dark:shadow-2xl p-5 md:p-7 lg:p-8">
+    <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-5 md:p-7 lg:p-8">
       <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
