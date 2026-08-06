@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, MousePointer2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Linkedin, Loader2, Mail, MousePointer2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 
@@ -279,18 +279,20 @@ const BookADemoTestimonials = ({ testimonials }: TestimonialsProps) => {
         </p>
       </div>
 
-      <div className="pt-5 border-t border-border/50 space-y-3 mt-auto">
-        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/80">
+      <div className="pt-6 border-t border-border/50 space-y-3.5 mt-auto">
+        <span className="block text-xs font-semibold uppercase tracking-wider text-primary mb-3">
           Other Ways to Reach Us
         </span>
-        <div className="flex flex-col gap-2.5 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2.5">
+            <Mail className="size-4 text-primary shrink-0" />
             <span className="font-medium text-foreground">Email:</span>
             <a href="mailto:info@novadirectsoftware.com" className="text-primary hover:underline">
               info@novadirectsoftware.com
             </a>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <Linkedin className="size-4 text-primary shrink-0" />
             <span className="font-medium text-foreground">LinkedIn:</span>
             <a href="https://www.linkedin.com/company/novadirectsoftware" target="_blank" rel="noreferrer" className="text-primary hover:underline">
               NovaDirect Software
