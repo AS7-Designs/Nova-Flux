@@ -279,8 +279,8 @@ export default function RewardModelsPage() {
 
                   {/* Right Visual Graphic - Full Height Alignment */}
                   <div className="lg:col-span-5 flex flex-col">
-                    <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-7 lg:p-8 flex flex-col justify-between w-full h-full">
-                      <div className="space-y-4">
+                    <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between w-full h-full">
+                      <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <ShieldCheck className="size-4 text-primary" />
@@ -296,17 +296,6 @@ export default function RewardModelsPage() {
                         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                           Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
                         </p>
-
-                        <div className="space-y-2 pt-2">
-                          <div className="flex items-center justify-between p-2 rounded-lg bg-background/60 border border-border/40 text-xs">
-                            <span className="text-muted-foreground">Downline Compression</span>
-                            <span className="font-semibold text-foreground">Active</span>
-                          </div>
-                          <div className="flex items-center justify-between p-2 rounded-lg bg-background/60 border border-border/40 text-xs">
-                            <span className="text-muted-foreground">Shared Pool Bonus</span>
-                            <span className="font-semibold text-foreground">Auto-Calculated</span>
-                          </div>
-                        </div>
                       </div>
 
                       <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
