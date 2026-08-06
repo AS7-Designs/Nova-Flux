@@ -28,7 +28,7 @@ const REWARD_MODELS = [
       "Enroller Based Rewards",
     ],
     spanClass: "lg:col-span-7",
-    colsClass: "grid-cols-1 sm:grid-cols-2",
+    isWide: true,
   },
   {
     icon: TrendingUp,
@@ -42,7 +42,7 @@ const REWARD_MODELS = [
       "Differential Commissions",
     ],
     spanClass: "lg:col-span-5",
-    colsClass: "grid-cols-1",
+    isWide: false,
   },
   {
     icon: Repeat,
@@ -56,7 +56,7 @@ const REWARD_MODELS = [
       "Renewal Bonuses",
     ],
     spanClass: "lg:col-span-5",
-    colsClass: "grid-cols-1",
+    isWide: false,
   },
   {
     icon: Award,
@@ -70,7 +70,7 @@ const REWARD_MODELS = [
       "Performance Based Incentives",
     ],
     spanClass: "lg:col-span-7",
-    colsClass: "grid-cols-1 sm:grid-cols-2",
+    isWide: true,
   },
 ];
 
@@ -121,11 +121,66 @@ export default function RewardModelsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {REWARD_MODELS.map((model, idx) => {
               const Icon = model.icon;
+              if (model.isWide) {
+                return (
+                  <div
+                    key={idx}
+                    className={cn(
+                      "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
+                      model.spanClass
+                    )}
+                  >
+                    <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+
+                    {/* Top Bar */}
+                    <div className="relative z-10 flex items-center justify-between mb-4">
+                      <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                        <Icon className="size-5" />
+                      </div>
+                      <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                        {model.eyebrow}
+                      </span>
+                    </div>
+
+                    {/* Interior 2-Column Split */}
+                    <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1">
+                      {/* Left Content */}
+                      <div className="md:col-span-6 space-y-2">
+                        <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
+                          {model.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {model.description}
+                        </p>
+                      </div>
+
+                      {/* Right Items */}
+                      <div className="md:col-span-6 space-y-2.5">
+                        <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                          What this looks like in NovaDirect:
+                        </span>
+                        <div className="grid grid-cols-1 gap-2">
+                          {model.items.map((item, i) => (
+                            <div
+                              key={i}
+                              className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                            >
+                              <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <div
                   key={idx}
                   className={cn(
-                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col transition-colors hover:border-primary/40",
+                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
                     model.spanClass
                   )}
                 >
@@ -142,7 +197,7 @@ export default function RewardModelsPage() {
                   </div>
 
                   {/* Body Content */}
-                  <div className="relative z-10 space-y-2.5 mb-6">
+                  <div className="relative z-10 space-y-2.5 mb-4">
                     <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
                       {model.title}
                     </h3>
@@ -152,11 +207,11 @@ export default function RewardModelsPage() {
                   </div>
 
                   {/* Bottom Items */}
-                  <div className="relative z-10 mt-auto pt-5 border-t border-border/50 space-y-3">
+                  <div className="relative z-10 mt-auto pt-4 border-t border-border/50 space-y-2.5">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
                       What this looks like in NovaDirect:
                     </span>
-                    <div className={cn("grid gap-2.5", model.colsClass)}>
+                    <div className="grid grid-cols-1 gap-2">
                       {model.items.map((item, i) => (
                         <div
                           key={i}
@@ -187,7 +242,7 @@ export default function RewardModelsPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                   {/* Left Content */}
                   <div className="lg:col-span-7 space-y-4">
                     <div className="space-y-2">
@@ -222,24 +277,37 @@ export default function RewardModelsPage() {
                     </div>
                   </div>
 
-                  {/* Right Visual Graphic */}
-                  <div className="lg:col-span-5">
-                    <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between min-h-[220px]">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <ShieldCheck className="size-4 text-primary" />
-                          <span className="text-xs font-bold text-foreground uppercase tracking-wider">
-                            Collective Volume Engine
+                  {/* Right Visual Graphic - Full Height Alignment */}
+                  <div className="lg:col-span-5 flex flex-col">
+                    <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-7 lg:p-8 flex flex-col justify-between w-full h-full">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <ShieldCheck className="size-4 text-primary" />
+                            <span className="text-xs font-bold text-foreground uppercase tracking-wider">
+                              Collective Volume Engine
+                            </span>
+                          </div>
+                          <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2.5 py-1 rounded border border-border">
+                            Automated
                           </span>
                         </div>
-                        <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
-                          Automated
-                        </span>
-                      </div>
 
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
-                      </p>
+                        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                          Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
+                        </p>
+
+                        <div className="space-y-2 pt-2">
+                          <div className="flex items-center justify-between p-2 rounded-lg bg-background/60 border border-border/40 text-xs">
+                            <span className="text-muted-foreground">Downline Compression</span>
+                            <span className="font-semibold text-foreground">Active</span>
+                          </div>
+                          <div className="flex items-center justify-between p-2 rounded-lg bg-background/60 border border-border/40 text-xs">
+                            <span className="text-muted-foreground">Shared Pool Bonus</span>
+                            <span className="font-semibold text-foreground">Auto-Calculated</span>
+                          </div>
+                        </div>
+                      </div>
 
                       <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
                         <span className="text-muted-foreground">Volume Sync:</span>
