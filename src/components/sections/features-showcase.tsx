@@ -124,12 +124,12 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
   const SubIcon = layer.subIcon;
 
   return (
-    <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-5 md:p-7 lg:p-8">
+    <Card className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-12 lg:py-16">
       <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
         {/* Content Column */}
-        <div className="lg:col-span-7 space-y-3.5">
+        <div className="lg:col-span-7 space-y-6">
           <div className="flex items-center justify-between">
             <Eyebrow>{layer.eyebrow}</Eyebrow>
           </div>
@@ -157,7 +157,7 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
 
         {/* Right Feature Graphic */}
         <div className="lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-5 md:p-6 flex flex-col justify-between min-h-[170px] md:min-h-[200px]">
+          <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 flex flex-col justify-between min-h-[240px] md:min-h-[280px]">
             <div className="flex items-center justify-between mb-3">
               <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                 <Icon className="size-5" />
