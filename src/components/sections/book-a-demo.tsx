@@ -1,8 +1,24 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CheckCircle2, Linkedin, Loader2, Mail, MousePointer2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Mail, MousePointer2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
+
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
 import { Button } from "@/components/ui/button";
@@ -292,7 +308,7 @@ const BookADemoTestimonials = ({ testimonials }: TestimonialsProps) => {
             </a>
           </div>
           <div className="flex items-center gap-2.5">
-            <Linkedin className="size-4 text-primary shrink-0" />
+            <LinkedinIcon className="size-4 text-primary shrink-0" />
             <span className="font-medium text-foreground">LinkedIn:</span>
             <a href="https://www.linkedin.com/company/novadirectsoftware" target="_blank" rel="noreferrer" className="text-primary hover:underline">
               NovaDirect Software
