@@ -316,7 +316,7 @@ export default function FeaturesShowcase({
       <div
         ref={stageRef}
         className="relative overflow-hidden"
-        style={{ height: "78vh" }}
+        style={{ height: "88vh" }}
       >
         {layers.map((layer, index) => (
           <div
