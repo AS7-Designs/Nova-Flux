@@ -203,15 +203,6 @@ export default function Footer({
 
   return (
     <footer className={cn("relative overflow-hidden border-t border-white/10 bg-black py-32 text-white", className)}>
-      {/* Giant masked wordmark watermark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden"
-      >
-        <span className="font-display translate-y-[35%] text-[14rem] leading-none font-bold tracking-tighter text-white/[0.02] select-none sm:text-[18rem] lg:text-[24rem]">
-          NovaDirect
-        </span>
-      </div>
 
       {/* Wave pattern underlay */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03]">
