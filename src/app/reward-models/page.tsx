@@ -6,6 +6,7 @@ import CtaBand from "@/components/sections/cta-band";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/data/config";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Reward Models",
