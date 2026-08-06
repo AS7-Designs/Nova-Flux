@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, MousePointer2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, MousePointer2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 
@@ -104,30 +104,133 @@ const FormGroup = ({ children, className }: FormGroupProps) => {
 };
 
 const BookADemoContactForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@novadirectsoftware.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New NovaDirect Inquiry from ${formData.name || "Website Visitor"}`,
+          Name: formData.name,
+          Company: formData.company,
+          Email: formData.email,
+          Message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        window.location.href = `mailto:info@novadirectsoftware.com?subject=Inquiry from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+        setSubmitted(true);
+      }
+    } catch {
+      window.location.href = `mailto:info@novadirectsoftware.com?subject=Inquiry from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="bg-card border-b p-8 lg:border-r lg:border-b-0 flex flex-col items-center justify-center text-center space-y-4 min-h-[380px]">
+        <div className="size-14 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+          <CheckCircle2 className="size-7 text-primary" />
+        </div>
+        <h3 className="text-2xl font-bold text-foreground">Message Sent!</h3>
+        <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
+          Thank you for reaching out. Your message has been sent to <span className="font-semibold text-foreground">info@novadirectsoftware.com</span>. We read every message personally and will reply within 1 hour.
+        </p>
+        <Button
+          variant="outline"
+          className="rounded-full mt-2"
+          onClick={() => {
+            setSubmitted(false);
+            setFormData({ name: "", company: "", email: "", message: "" });
+          }}
+        >
+          Send Another Message
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-card border-b p-8 lg:border-r lg:border-b-0">
-      <form className="grid grid-cols-2 gap-x-3 gap-y-6">
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-x-3 gap-y-6">
         <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>Your Name</Label>
-          <Input type="text" placeholder="John Doe" />
-        </FormGroup>
-        <FormGroup className="col-span-2 sm:col-span-1">
-          <Label>Company Name</Label>
-          <Input type="text" placeholder="Your Business Name" />
-        </FormGroup>
-        <FormGroup className="col-span-2">
-          <Label>Email Address</Label>
-          <Input type="email" placeholder="john@company.com" />
-        </FormGroup>
-        <FormGroup className="col-span-2">
-          <Label>What are you looking to build?</Label>
-          <Textarea
-            placeholder="Tell us about your business, compensation model, or network goals..."
-            className="min-h-32"
+          <Label htmlFor="contact-name">Your Name</Label>
+          <Input
+            id="contact-name"
+            name="name"
+            type="text"
+            required
+            placeholder="John Doe"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </FormGroup>
-        <Button type="submit" className="col-span-2 rounded-full" size="lg">
-          Send Message <ArrowRight className="size-4 ml-1" />
+        <FormGroup className="col-span-2 sm:col-span-1">
+          <Label htmlFor="contact-company">Company Name</Label>
+          <Input
+            id="contact-company"
+            name="company"
+            type="text"
+            placeholder="Your Business Name"
+            value={formData.company}
+            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+          />
+        </FormGroup>
+        <FormGroup className="col-span-2">
+          <Label htmlFor="contact-email">Email Address</Label>
+          <Input
+            id="contact-email"
+            name="email"
+            type="email"
+            required
+            placeholder="john@company.com"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          />
+        </FormGroup>
+        <FormGroup className="col-span-2">
+          <Label htmlFor="contact-message">What are you looking to build?</Label>
+          <Textarea
+            id="contact-message"
+            name="message"
+            required
+            placeholder="Tell us about your business, compensation model, or network goals..."
+            className="min-h-32"
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          />
+        </FormGroup>
+        <Button type="submit" disabled={loading} className="col-span-2 rounded-full" size="lg">
+          {loading ? (
+            <>
+              <Loader2 className="size-4 animate-spin mr-2" /> Sending...
+            </>
+          ) : (
+            <>
+              Send Message <ArrowRight className="size-4 ml-1" />
+            </>
+          )}
         </Button>
       </form>
     </div>
