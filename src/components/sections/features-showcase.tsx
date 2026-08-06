@@ -211,6 +211,7 @@ export default function FeaturesShowcase({
 
     // Initial state: all cards except first are pushed off-screen below
     cards.forEach((card, i) => {
+      gsap.set(card, { transformOrigin: "top center" });
       if (i === 0) {
         gsap.set(card, { y: 0, scale: 1, zIndex: 1 });
       } else {
@@ -268,8 +269,8 @@ export default function FeaturesShowcase({
         tl.to(
           cards[j],
           {
-            scale: 1 - depth * 0.035,
-            y: -depth * 14,
+            scale: 1 - depth * 0.03,
+            y: -depth * 18,
             duration: segmentDuration * 0.8,
             ease: "power2.out",
           },
