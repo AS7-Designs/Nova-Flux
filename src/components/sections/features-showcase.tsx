@@ -288,7 +288,7 @@ export default function FeaturesShowcase({
   return (
     <section id="platform" className={cn("relative", className)}>
       {/* Section Header */}
-      <div ref={headerRef} className="pt-20 md:pt-28">
+      <div ref={headerRef} className="pt-12 md:pt-16">
         <div
           className={cn(
             "container container-large text-center",
@@ -310,8 +310,8 @@ export default function FeaturesShowcase({
         </div>
       </div>
 
-      {/* 16px spacer between header and first card */}
-      <div style={{ height: "16px" }} />
+      {/* 40px spacer between header and first card */}
+      <div style={{ height: "40px" }} />
 
       {/* Pinned Cards Stage */}
       <div
@@ -323,7 +323,7 @@ export default function FeaturesShowcase({
           <div
             key={layer.id}
             ref={setCardRef(index)}
-            className="absolute inset-0 flex items-start justify-center pt-2 px-4"
+            className="absolute inset-0 flex items-start justify-center pt-8 md:pt-14 px-4"
           >
             <div className="w-full max-w-6xl mx-auto">
               <LayerCard layer={layer} />
