@@ -166,18 +166,16 @@ function StackCard({ layer, index, totalCards }: StackCardProps) {
   return (
     <div
       ref={containerRef}
+      className="flex items-center justify-center"
       style={{
         height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
         position: "sticky",
         top: 0,
       }}
     >
       <div
         ref={cardRef}
-        className="w-[90%] md:w-[80%] lg:w-[70%]"
+        className="w-[92%] md:w-[82%] lg:w-[72%] mx-auto"
         style={{
           position: "relative",
           top: `calc(-5vh + ${index * 25}px)`,
@@ -257,17 +255,39 @@ export default function FeaturesShowcase({
   className?: string;
   containerClass?: string;
 }) {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    const cardsWrapper = cardsWrapperRef.current;
+    if (!header || !cardsWrapper) return;
+
+    // Fade out the section header as user scrolls into the cards area
+    const headerTrigger = ScrollTrigger.create({
+      trigger: cardsWrapper,
+      start: "top 80%",
+      end: "top 20%",
+      scrub: true,
+      onUpdate: (self) => {
+        gsap.set(header, {
+          opacity: 1 - self.progress,
+          y: -40 * self.progress,
+        });
+      },
+    });
+
+    return () => {
+      headerTrigger.kill();
+    };
+  }, []);
+
   return (
-    <section id="platform" className={cn("relative overflow-hidden", className)}>
-      {/* Section Header */}
+    <section id="platform" className={cn("relative", className)}>
+      {/* Section Header - scrolls naturally, fades via GSAP */}
       <div
-        style={{
-          height: "60vh",
-          width: "100%",
-          display: "grid",
-          placeContent: "center",
-          position: "relative",
-        }}
+        ref={headerRef}
+        className="py-16 md:py-20"
       >
         <div className={cn("container container-large text-center", containerClass)}>
           <div className="max-w-3xl mx-auto space-y-2.5">
@@ -282,8 +302,8 @@ export default function FeaturesShowcase({
         </div>
       </div>
 
-      {/* Stacking Cards */}
-      <div>
+      {/* Stacking Cards - each card is in its own 100vh sticky container */}
+      <div ref={cardsWrapperRef}>
         {layers.map((layer, index) => (
           <StackCard
             key={layer.id}
