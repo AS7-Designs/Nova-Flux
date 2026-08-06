@@ -132,9 +132,6 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
         <div className="lg:col-span-7 space-y-3.5">
           <div className="flex items-center justify-between">
             <Eyebrow>{layer.eyebrow}</Eyebrow>
-            <span className="text-[11px] font-mono font-semibold tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
-              LAYER {layer.number}
-            </span>
           </div>
 
           <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-tight">
@@ -312,8 +309,8 @@ export default function FeaturesShowcase({
         </div>
       </div>
 
-      {/* 100px spacer between header and first card */}
-      <div style={{ height: "100px" }} />
+      {/* 50px spacer between header and first card */}
+      <div style={{ height: "50px" }} />
 
       {/* Pinned Cards Stage */}
       <div
