@@ -172,7 +172,7 @@ const BookADemoContactForm = () => {
   }
 
   return (
-    <div className="bg-card border-b p-8 lg:border-r lg:border-b-0">
+    <div className="bg-card border-b p-6 md:p-8 lg:p-9 lg:border-r lg:border-b-0">
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-x-3 gap-y-6">
         <FormGroup className="col-span-2 sm:col-span-1">
           <Label htmlFor="contact-name">Your Name</Label>
@@ -261,29 +261,29 @@ interface TestimonialsProps {
 
 const BookADemoTestimonials = ({ testimonials }: TestimonialsProps) => {
   return (
-    <div className="relative flex flex-col justify-between h-full p-8 lg:p-10 space-y-8 bg-card/40">
-      <div className="space-y-6">
+    <div className="relative flex flex-col justify-between h-full p-6 md:p-8 lg:p-9 space-y-6 bg-card/40">
+      <div className="space-y-4">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
             What Happens Next
           </span>
-          <h3 className="text-2xl font-semibold tracking-tight text-foreground mt-1">
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground mt-1">
             Personal Response Within 1 Hour
           </h3>
         </div>
-        <p className="text-muted-foreground text-base leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed">
           We read every message personally. You will hear from us within one hour with a real response, not an automated reply.
         </p>
-        <p className="text-muted-foreground text-base leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed">
           If your enquiry is a good fit for NovaDirect, we will suggest a discovery call to go deeper. If you have already booked a call, we will come prepared having reviewed anything you shared with us.
         </p>
       </div>
 
-      <div className="pt-6 border-t border-border/40 space-y-3">
+      <div className="pt-5 border-t border-border/50 space-y-3 mt-auto">
         <span className="text-xs font-semibold uppercase tracking-wider text-foreground/80">
           Other Ways to Reach Us
         </span>
-        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+        <div className="flex flex-col gap-2.5 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground">Email:</span>
             <a href="mailto:info@novadirectsoftware.com" className="text-primary hover:underline">
