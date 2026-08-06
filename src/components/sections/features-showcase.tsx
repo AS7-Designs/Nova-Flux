@@ -309,8 +309,8 @@ export default function FeaturesShowcase({
         </div>
       </div>
 
-      {/* 50px spacer between header and first card */}
-      <div style={{ height: "50px" }} />
+      {/* 25px spacer between header and first card */}
+      <div style={{ height: "25px" }} />
 
       {/* Pinned Cards Stage */}
       <div
