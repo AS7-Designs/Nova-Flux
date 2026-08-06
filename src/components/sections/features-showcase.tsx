@@ -309,8 +309,8 @@ export default function FeaturesShowcase({
         </div>
       </div>
 
-      {/* 25px spacer between header and first card */}
-      <div style={{ height: "25px" }} />
+      {/* 16px spacer between header and first card */}
+      <div style={{ height: "16px" }} />
 
       {/* Pinned Cards Stage */}
       <div
@@ -322,7 +322,7 @@ export default function FeaturesShowcase({
           <div
             key={layer.id}
             ref={setCardRef(index)}
-            className="absolute inset-0 flex items-center justify-center px-4"
+            className="absolute inset-0 flex items-start justify-center pt-2 px-4"
           >
             <div className="w-full max-w-6xl mx-auto">
               <LayerCard layer={layer} />
