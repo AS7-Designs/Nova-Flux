@@ -48,7 +48,10 @@ export default function HowItWorks({
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 relative">
           {STEPS.map((s, idx) => (
-            <Card key={idx} className="relative overflow-hidden border-border/60 bg-card p-6 md:p-8 flex flex-col justify-between">
+            <div
+              key={idx}
+              className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40"
+            >
               <div className="space-y-4">
                 <div className="text-4xl font-extrabold text-primary/30 tracking-tight">
                   {s.step}
@@ -58,7 +61,7 @@ export default function HowItWorks({
                   {s.description}
                 </p>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

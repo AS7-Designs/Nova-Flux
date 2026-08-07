@@ -58,17 +58,20 @@ export default function WhyChoose({
           {DIFFERENCE_ITEMS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <Card key={idx} className="border-border/60 bg-card p-6 md:p-8 hover:shadow-md transition-all duration-300">
-                <CardContent className="p-0 space-y-4">
-                  <div className="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                    <Icon className="size-6" />
-                  </div>
+              <div
+                key={idx}
+                className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40 space-y-4"
+              >
+                <div className="size-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+                  <Icon className="size-6" />
+                </div>
+                <div className="space-y-2">
                   <h3 className="text-xl font-semibold tracking-tight text-foreground">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                     {item.description}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>

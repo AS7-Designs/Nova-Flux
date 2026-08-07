@@ -152,46 +152,17 @@ const Navbar = () => {
             <NavigationMenuList className="w-full flex-col items-start gap-0">
               {NAV_LINKS.map((item) => (
                 <NavigationMenuItem key={item.label} className="w-full">
-                  {item.subitems ? (
-                    <Accordion type="single" collapsible className="">
-                      <AccordionItem value={item.label} className="border-none">
-                        <AccordionTrigger className="flex w-full cursor-pointer items-center justify-between px-2 py-2.5 text-base font-normal hover:no-underline">
-                          {item.label}
-                        </AccordionTrigger>
-                        <AccordionContent className="pt-0 pb-0">
-                          <div className="space-y-0">
-                            {item.subitems.map((subitem) => (
-                              <NavigationMenuLink
-                                key={subitem.label}
-                                href={subitem.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className={cn(
-                                  "text-muted-foreground hover:bg-accent/50 flex flex-row gap-2 px-2 py-2 font-medium transition-colors",
-                                  pathname === subitem.href && "bg-accent font-semibold",
-                                )}
-                                suppressHydrationWarning
-                              >
-                                <subitem.icon className="size-5" />
-                                <span className="">{subitem.label}</span>
-                              </NavigationMenuLink>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  ) : (
-                    <NavigationMenuLink
-                      href={item.href}
-                      className={cn(
-                        "hover:text-foreground block px-2 py-2.5 text-base transition-colors",
-                        pathname === item.href && "font-semibold",
-                      )}
-                      onClick={() => setIsMenuOpen(false)}
-                      suppressHydrationWarning
-                    >
-                      {item.label}
-                    </NavigationMenuLink>
-                  )}
+                  <NavigationMenuLink
+                    href={item.href}
+                    className={cn(
+                      "hover:text-foreground block px-2 py-3 text-lg font-medium transition-colors",
+                      pathname === item.href && "font-semibold text-primary",
+                    )}
+                    onClick={() => setIsMenuOpen(false)}
+                    suppressHydrationWarning
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
