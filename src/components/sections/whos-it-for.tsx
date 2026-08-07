@@ -57,9 +57,9 @@ export default function WhosItFor({
     <section className={cn("section-padding relative overflow-hidden", className)}>
       <FluxDotGrid className="opacity-[0.03]" />
       <div className={cn("relative z-10 container", containerClass)}>
-        <div className="mx-auto max-w-3xl space-y-3 lg:space-y-4 lg:text-center">
+        <div className="mx-auto max-w-3xl space-y-3 lg:space-y-4 text-center">
           <Eyebrow className="justify-center">Who It's For</Eyebrow>
-          <h2 className="text-3xl font-semibold tracking-tight lg:text-5xl">
+          <h2 className="text-3xl font-semibold tracking-tight lg:text-5xl text-foreground">
             Built for Any Business That Grows Through Its People.
           </h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
@@ -67,33 +67,33 @@ export default function WhosItFor({
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-6 lg:gap-6">
+        <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-6 lg:gap-6">
           {AUDIENCES.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <Card
+              <div
                 key={idx}
                 className={cn(
-                  "group relative overflow-hidden border-border/60 hover:border-primary/40 transition-all duration-300 hover:shadow-md bg-card",
+                  "group relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40",
                   item.span
                 )}
               >
-                <div aria-hidden className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-primary/30 via-chart-2/20 to-transparent" />
-                <CardHeader className="p-6 md:p-8">
-                  <div className="flex items-center justify-between gap-4 mb-3">
-                    <div className="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                      <Icon className="size-6" />
-                    </div>
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent text-muted-foreground">
-                      {item.badge}
-                    </span>
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+                    <Icon className="size-5" />
                   </div>
-                  <CardTitle className="text-xl font-semibold tracking-tight">{item.title}</CardTitle>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed mt-2">
+                  <span className="text-[11px] font-medium px-3 py-1 rounded-full bg-accent/80 text-foreground border border-border/50">
+                    {item.badge}
+                  </span>
+                </div>
+
+                <div className="space-y-2 mt-auto">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                     {item.description}
                   </p>
-                </CardHeader>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>
