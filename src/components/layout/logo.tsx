@@ -18,11 +18,11 @@ const Logo: React.FC<LogoProps> = ({ className = "", wrapperClassName = "", only
 
   if (onlyLogo) {
     return (
-      <Link href="/" className={cn("inline-flex items-center gap-2.5", className)}>
+      <Link href="/" className={cn("inline-flex items-center gap-2", className)}>
         <img
           src={markSrc}
           alt={siteConfig.logo.alt}
-          className="h-8 md:h-9 w-auto shrink-0 object-contain"
+          className="h-5 md:h-6 w-auto shrink-0 object-contain"
         />
       </Link>
     );
@@ -30,14 +30,14 @@ const Logo: React.FC<LogoProps> = ({ className = "", wrapperClassName = "", only
 
   return (
     <div className={cn("inline-flex items-center", wrapperClassName)}>
-      <Link href="/" className={cn("inline-flex items-center gap-2.5 md:gap-3", className)}>
+      <Link href="/" className={cn("inline-flex items-center gap-2.5", className)}>
         <img
           src={markSrc}
           alt={siteConfig.logo.alt}
           loading="eager"
-          className="h-9 md:h-10 w-auto shrink-0 object-contain my-auto"
+          className="h-5.5 md:h-6 w-auto shrink-0 object-contain my-auto"
         />
-        <div className="flex items-center font-display text-xl md:text-2xl font-bold tracking-tight">
+        <div className="flex items-center font-display text-xl md:text-2xl font-bold tracking-tight leading-none">
           <span className={textColor}>Nova</span>
           <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
             Direct
