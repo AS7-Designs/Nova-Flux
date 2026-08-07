@@ -108,29 +108,30 @@ const Navbar = () => {
         <div className="flex items-center justify-end gap-2 lg:hidden">
           <ThemeToggle />
           <button
-            className="text-muted-foreground relative flex size-8 rounded-sm border lg:hidden"
+            className="text-foreground relative flex size-10 items-center justify-center rounded-full border border-border/70 bg-card transition-colors hover:bg-accent lg:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             <span className="sr-only">Open main menu</span>
             <div className={cn("absolute top-1/2 left-1/2 block w-4 -translate-x-1/2 -translate-y-1/2")}>
               <span
                 aria-hidden="true"
                 className={cn(
-                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  "absolute block h-0.5 w-full rounded-full bg-current transition duration-300 ease-in-out",
                   isMenuOpen ? "rotate-45" : "-translate-y-1.5",
                 )}
               ></span>
               <span
                 aria-hidden="true"
                 className={cn(
-                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  "absolute block h-0.5 w-full rounded-full bg-current transition duration-300 ease-in-out",
                   isMenuOpen ? "opacity-0" : "",
                 )}
               ></span>
               <span
                 aria-hidden="true"
                 className={cn(
-                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  "absolute block h-0.5 w-full rounded-full bg-current transition duration-300 ease-in-out",
                   isMenuOpen ? "-rotate-45" : "translate-y-1.5",
                 )}
               ></span>

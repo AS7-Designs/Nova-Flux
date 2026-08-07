@@ -228,7 +228,7 @@ export default function Footer({
             <div className="flex flex-col items-start">
               <Logo inverted />
 
-              <div className="mt-16 flex gap-2 pb-6">
+              <div className="mt-6 md:mt-10 flex gap-2 pb-6">
                 <SocialLinks socialLinks={socialLinks} />
               </div>
 
