@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import BookADemo from "@/components/sections/book-a-demo";
 import ContactDetails from "@/components/sections/contact-details";
 import ContactFaq from "@/components/sections/contact-faq";
+import { Button } from "@/components/ui/button";
 import { getContactDetailItems, siteConfig } from "@/data/config";
 
 export const metadata: Metadata = {
@@ -81,9 +82,9 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <div className="mt-auto pt-4">
-                  <a href="#demo-form" className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors">
-                    Schedule a Discovery Call →
-                  </a>
+                  <Button size="lg" className="rounded-full" asChild>
+                    <a href="#demo-form">Schedule a Discovery Call →</a>
+                  </Button>
                 </div>
               </div>
 
@@ -95,9 +96,9 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <div className="mt-auto pt-4">
-                  <a href="mailto:info@novadirectsoftware.com" className="inline-flex items-center justify-center rounded-full border border-border bg-background text-foreground px-6 py-2.5 text-sm font-medium hover:bg-accent transition-colors">
-                    info@novadirectsoftware.com
-                  </a>
+                  <Button variant="outline" size="lg" className="rounded-full" asChild>
+                    <a href="mailto:info@novadirectsoftware.com">info@novadirectsoftware.com</a>
+                  </Button>
                 </div>
               </div>
             </div>

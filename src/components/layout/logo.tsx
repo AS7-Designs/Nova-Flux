@@ -37,15 +37,10 @@ const Logo: React.FC<LogoProps> = ({ className = "", wrapperClassName = "", only
           loading="eager"
           className="h-9 md:h-10 w-auto shrink-0 object-contain my-auto"
         />
-        <div className="flex flex-col justify-center leading-none">
-          <div className="flex items-baseline font-display text-xl md:text-2xl font-bold tracking-tight">
-            <span className={textColor}>Nova</span>
-            <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
-              Direct
-            </span>
-          </div>
-          <span className={cn("text-[10px] font-semibold tracking-wider uppercase mt-0.5", subtextColor)}>
-            Software
+        <div className="flex items-center font-display text-xl md:text-2xl font-bold tracking-tight">
+          <span className={textColor}>Nova</span>
+          <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
+            Direct
           </span>
         </div>
       </Link>
