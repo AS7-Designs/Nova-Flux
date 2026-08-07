@@ -62,77 +62,45 @@ const Navbar = () => {
         "lg:fixed lg:inset-x-0 lg:top-[var(--banner-height,0px)] lg:translate-y-[18px]",
       )}
     >
-      <div className="lg:bg-popover relative z-50 container flex h-[var(--header-height)] items-center justify-between gap-4 lg:h-[calc(var(--header-height)-20px)] lg:rounded-full lg:shadow-sm lg:backdrop-blur-md">
-        <Logo className="" />
+      <div className="lg:bg-popover/90 relative z-50 container flex h-[var(--header-height)] items-center justify-between px-6 lg:h-[54px] lg:rounded-full lg:border lg:border-border/70 lg:backdrop-blur-md">
+        <Logo className="shrink-0" />
 
-        <div className="flex items-center gap-8">
-          <NavigationMenu viewport={false} className="hidden lg:block">
-            <NavigationMenuList className="">
-              {NAV_LINKS.map((item) => (
-                <NavigationMenuItem key={item.label}>
-                  {item.subitems ? (
-                    <>
-                      <NavigationMenuTrigger
-                        className={cn(
-                          "cursor-pointer [&_svg]:ms-2 [&_svg]:size-4",
-                          navLinkClassName,
-                          pathname.startsWith(item.href) && "bg-accent font-semibold",
-                        )}
-                        suppressHydrationWarning
-                      >
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent className="">
-                        <ul className="grid w-[263px] gap-2">
-                          {item.subitems.map((subitem) => (
-                            <li key={subitem.label}>
-                              <NavigationMenuLink href={subitem.href} className="hover:bg-accent/50 flex-row gap-3 p-3">
-                                <subitem.icon className="text-foreground size-5.5" />
-                                <div className="flex flex-col gap-1">
-                                  <div className="text-sm font-medium tracking-normal">{subitem.label}</div>
-                                  <div className="text-muted-foreground text-xs leading-snug">
-                                    {subitem.description}
-                                  </div>
-                                </div>
-                              </NavigationMenuLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <NavigationMenuLink
-                      href={item.href}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        navLinkClassName,
-                        pathname === item.href && "bg-accent font-semibold",
-                      )}
-                      suppressHydrationWarning
-                    >
-                      {item.label}
-                    </NavigationMenuLink>
+        <NavigationMenu viewport={false} className="hidden lg:block mx-auto">
+          <NavigationMenuList className="gap-1 md:gap-2">
+            {NAV_LINKS.map((item) => (
+              <NavigationMenuItem key={item.label}>
+                <NavigationMenuLink
+                  href={item.href}
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    navLinkClassName,
+                    "px-4 text-xs md:text-sm font-medium transition-colors hover:text-foreground",
+                    pathname === item.href && "bg-accent font-semibold text-foreground"
                   )}
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-
-          <div className="hidden items-center justify-end gap-4 lg:flex">
-            <ThemeToggle />
-            {ACTION_BUTTONS.map((button) => (
-              <Button
-                key={button.label}
-                size="sm"
-                variant={button.variant}
-                className="rounded-full shadow-none"
-                asChild
-              >
-                <Link href={button.href}>{button.label}</Link>
-              </Button>
+                  suppressHydrationWarning
+                >
+                  {item.label}
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             ))}
-          </div>
-          <div className="flex items-center gap-2 lg:hidden lg:gap-4">
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <div className="hidden items-center justify-end gap-3 lg:flex shrink-0">
+          <ThemeToggle />
+          {ACTION_BUTTONS.map((button) => (
+            <Button
+              key={button.label}
+              size="default"
+              variant={button.variant}
+              className="rounded-full font-semibold px-5 text-xs md:text-sm"
+              asChild
+            >
+              <Link href={button.href}>{button.label}</Link>
+            </Button>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 lg:hidden lg:gap-4">
             <ThemeToggle />
             <button
               className="text-muted-foreground relative flex size-8 rounded-sm border lg:hidden"
