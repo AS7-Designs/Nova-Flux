@@ -6,6 +6,7 @@ import { FluxWavePattern } from "@/components/elements/flux-wave-pattern";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/data/config";
+import { CheckCircle2, Clock, Headphones, Layers, ShieldCheck, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Work With Us",
@@ -126,45 +127,118 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* Commercial Model */}
-      <section className="section-padding bg-card/30 border-t border-border/50">
+      <section className="section-padding bg-card/40 border-t border-border/50">
         <div className="container container-large">
-          <div className="max-w-4xl mx-auto space-y-10">
+          <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center space-y-3">
               <Eyebrow className="justify-center">Commercial Model</Eyebrow>
-              <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">Project-Based Pricing & Support</h2>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                Project-Based Pricing & Support
+              </h2>
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-                NovaDirect engagements are project based. The investment for each project is scoped and agreed before build begins. There are no hidden costs and no surprises.
+                NovaDirect engagements are project based. The investment for each project is scoped transparently and agreed before build begins. No hidden costs, no surprises.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="border-border/60 bg-card p-6 md:p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Project Investment</h3>
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  Every engagement is scoped individually based on the complexity of your compensation model, required modules, integrations, and scale of operation. We discuss this transparently during the scoping conversation.
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+              {/* Card 1: Project Investment */}
+              <div className="rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between h-full space-y-6 transition-colors hover:border-primary/40">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <ShieldCheck className="size-5" />
+                    </div>
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground uppercase">
+                      01 — Engagement Scope
+                    </span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                    Project Investment
+                  </h3>
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                    Every engagement is scoped individually based on the complexity of your compensation model, required modules, integrations, and scale of operation. We discuss this transparently during the initial scoping phase.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border/50 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                    <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                    <span>Scoped Before Build</span>
+                  </div>
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                    <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                    <span>Zero Hidden Fees</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Ongoing Support Options */}
+              <div className="rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between h-full space-y-6 transition-colors hover:border-primary/40">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <Headphones className="size-5" />
+                    </div>
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground uppercase">
+                      02 — Post-Launch
+                    </span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                    Ongoing Support Options
+                  </h3>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-foreground">Annual Maintenance Contract (AMC)</span>
+                      <span className="text-[10px] font-mono font-semibold tracking-wider uppercase text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
+                        Planned Coverage
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      For businesses wanting consistent, planned maintenance, proactive updates, and priority support coverage.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-foreground">Hourly Support</span>
+                      <span className="text-[10px] font-mono font-semibold tracking-wider uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+                        On-Demand
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      For businesses preferring flexible, pay-as-you-go technical assistance as and when needed.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Multidisciplinary Team Note (Full Width) */}
+              <div className="lg:col-span-2 rounded-2xl md:rounded-3xl border border-primary/30 bg-primary/5 p-6 md:p-8 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="size-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
+                    <Sparkles className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">What is Behind NovaDirect</h3>
+                    <p className="text-xs text-muted-foreground">Comprehensive multi-domain execution</p>
+                  </div>
+                </div>
+                <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
+                  Every NovaDirect client benefits from more than a software team. Behind the platform sits a multidisciplinary organisation with capabilities across software development, branding, UI/UX design, digital marketing, and AI transformation.
                 </p>
-              </Card>
-
-              <Card className="border-border/60 bg-card p-6 md:p-8 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Ongoing Support Options</h3>
-                <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="font-semibold text-foreground">● Annual Maintenance Contract (AMC):</span> For businesses wanting consistent, planned support coverage.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="font-semibold text-foreground">● Hourly Support:</span> For businesses preferring support as and when needed.
-                  </li>
-                </ul>
-              </Card>
+                <div className="pt-2 flex flex-wrap gap-2">
+                  {["Software Development", "Branding & UI/UX", "Digital Marketing", "AI Transformation"].map((chip, i) => (
+                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-border text-xs font-medium text-foreground">
+                      <CheckCircle2 className="size-3 text-primary" />
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-
-            {/* Multidisciplinary Team Note */}
-            <Card className="border-primary/30 bg-primary/5 p-6 md:p-8 text-center space-y-3">
-              <h3 className="text-xl font-semibold text-foreground">What is Behind NovaDirect</h3>
-              <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto">
-                Every NovaDirect client benefits from more than a software team. Behind the platform sits a multidisciplinary organisation with capabilities across software development, branding, design, marketing, and AI transformation.
-              </p>
-            </Card>
           </div>
         </div>
       </section>
