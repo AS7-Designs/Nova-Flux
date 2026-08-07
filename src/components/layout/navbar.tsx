@@ -20,42 +20,6 @@ import { ThemeToggle } from "@/components/utility/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export const NAV_LINKS = [
-  {
-    label: "Platform",
-    href: "/#platform",
-    subitems: [
-      {
-        label: "Your People",
-        href: "/#layer-people",
-        description: "Build, manage and grow your distributor network.",
-        icon: Users,
-      },
-      {
-        label: "Your Products",
-        href: "/#layer-products",
-        description: "Physical, digital, memberships and subscriptions.",
-        icon: BarChart3,
-      },
-      {
-        label: "Your Compensation",
-        href: "/#layer-compensation",
-        description: "Custom commission logic, multi-level & bonus models.",
-        icon: BarChart3,
-      },
-      {
-        label: "Your Payments",
-        href: "/#layer-payments",
-        description: "Gateways, eWallets, payouts, and compliance.",
-        icon: BarChart3,
-      },
-      {
-        label: "Your Control",
-        href: "/#layer-control",
-        description: "Unified admin panel and role-based access.",
-        icon: Users,
-      },
-    ],
-  },
   { label: "Reward Models", href: "/reward-models" },
   { label: "Work With Us", href: "/work-with-us" },
   { label: "Contact", href: "/contact" },
