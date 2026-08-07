@@ -27,8 +27,6 @@ const REWARD_MODELS = [
       "First Purchase Commissions",
       "Enroller Based Rewards",
     ],
-    spanClass: "lg:col-span-7",
-    isWide: true,
   },
   {
     icon: TrendingUp,
@@ -41,8 +39,6 @@ const REWARD_MODELS = [
       "Generation Based Commissions",
       "Differential Commissions",
     ],
-    spanClass: "lg:col-span-5",
-    isWide: false,
   },
   {
     icon: Repeat,
@@ -55,8 +51,6 @@ const REWARD_MODELS = [
       "Loyalty Based Incentives",
       "Renewal Bonuses",
     ],
-    spanClass: "lg:col-span-5",
-    isWide: false,
   },
   {
     icon: Award,
@@ -69,8 +63,6 @@ const REWARD_MODELS = [
       "Achievement Awards",
       "Performance Based Incentives",
     ],
-    spanClass: "lg:col-span-7",
-    isWide: true,
   },
 ];
 
@@ -118,71 +110,13 @@ export default function RewardModelsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {REWARD_MODELS.map((model, idx) => {
               const Icon = model.icon;
-              if (model.isWide) {
-                return (
-                  <div
-                    key={idx}
-                    className={cn(
-                      "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
-                      model.spanClass
-                    )}
-                  >
-                    <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
-
-                    {/* Top Bar */}
-                    <div className="relative z-10 flex items-center justify-between mb-4">
-                      <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                        <Icon className="size-5" />
-                      </div>
-                      <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
-                        {model.eyebrow}
-                      </span>
-                    </div>
-
-                    {/* Interior 2-Column Split */}
-                    <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1">
-                      {/* Left Content */}
-                      <div className="md:col-span-6 space-y-2">
-                        <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
-                          {model.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {model.description}
-                        </p>
-                      </div>
-
-                      {/* Right Items */}
-                      <div className="md:col-span-6 space-y-2.5">
-                        <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
-                          What this looks like in NovaDirect:
-                        </span>
-                        <div className="grid grid-cols-1 gap-2">
-                          {model.items.map((item, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
-                            >
-                              <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                              <span>{item}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
               return (
                 <div
                   key={idx}
-                  className={cn(
-                    "relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-9 flex flex-col justify-between transition-colors hover:border-primary/40",
-                    model.spanClass
-                  )}
+                  className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40"
                 >
                   <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
@@ -197,7 +131,7 @@ export default function RewardModelsPage() {
                   </div>
 
                   {/* Body Content */}
-                  <div className="relative z-10 space-y-2.5 mb-4">
+                  <div className="relative z-10 space-y-2.5 mb-6">
                     <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
                       {model.title}
                     </h3>
@@ -207,11 +141,11 @@ export default function RewardModelsPage() {
                   </div>
 
                   {/* Bottom Items */}
-                  <div className="relative z-10 mt-auto pt-4 border-t border-border/50 space-y-2.5">
+                  <div className="relative z-10 mt-auto pt-5 border-t border-border/50 space-y-3">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
                       What this looks like in NovaDirect:
                     </span>
-                    <div className="grid grid-cols-1 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {model.items.map((item, i) => (
                         <div
                           key={i}
@@ -228,7 +162,7 @@ export default function RewardModelsPage() {
             })}
 
             {/* Model 05 - Full Width Hero Bento Card */}
-            <div className="lg:col-span-12 relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/40">
+            <div className="lg:col-span-2 relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/40">
               <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
               <div className="relative z-10 space-y-6">
