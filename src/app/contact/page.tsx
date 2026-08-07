@@ -72,24 +72,33 @@ export default function ContactPage() {
         <div className="container container-large">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-semibold tracking-tight text-center mb-8">Two Ways to Connect</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-xl border border-border/60 bg-card p-6 md:p-8 space-y-4 text-center">
-                <h3 className="text-xl font-semibold text-foreground">Book a Discovery Call</h3>
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  The best way to start. A focused conversation about your business, your network, and what you are trying to build. No pitch, no pressure.
-                </p>
-                <a href="/contact" className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors">
-                  Schedule a Discovery Call →
-                </a>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+              <div className="rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between h-full text-center transition-colors hover:border-primary/40 space-y-4">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">Book a Discovery Call</h3>
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                    The best way to start. A focused conversation about your business, your network, and what you are trying to build. No pitch, no pressure.
+                  </p>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#demo-form" className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors">
+                    Schedule a Discovery Call →
+                  </a>
+                </div>
               </div>
-              <div className="rounded-xl border border-border/60 bg-card p-6 md:p-8 space-y-4 text-center">
-                <h3 className="text-xl font-semibold text-foreground">Send Us a Message</h3>
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  Prefer to write first? Fill in the form above and we will get back to you within one hour.
-                </p>
-                <a href="mailto:info@novadirectsoftware.com" className="inline-flex items-center justify-center rounded-full border border-border bg-background text-foreground px-6 py-2.5 text-sm font-medium hover:bg-accent transition-colors">
-                  info@novadirectsoftware.com
-                </a>
+
+              <div className="rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between h-full text-center transition-colors hover:border-primary/40 space-y-4">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">Send Us a Message</h3>
+                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                    Prefer to write first? Send your query using our contact form above or reach us via email directly. We will get back to you within one hour.
+                  </p>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="mailto:info@novadirectsoftware.com" className="inline-flex items-center justify-center rounded-full border border-border bg-background text-foreground px-6 py-2.5 text-sm font-medium hover:bg-accent transition-colors">
+                    info@novadirectsoftware.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>
