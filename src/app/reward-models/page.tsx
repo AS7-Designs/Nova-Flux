@@ -217,14 +217,14 @@ export default function RewardModelsPage() {
                   <div className="lg:col-span-5 flex flex-col">
                     <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-background/90 dark:bg-card/60 p-6 md:p-7 flex flex-col justify-between w-full h-full shadow-2xs">
                       <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <ShieldCheck className="size-4 text-primary" />
-                            <span className="text-xs font-bold text-foreground uppercase tracking-wider">
-                              Automated Calculation Engine
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <ShieldCheck className="size-4 text-primary shrink-0" />
+                            <span className="text-[11px] font-bold text-foreground uppercase tracking-wider truncate">
+                              Calculation Engine
                             </span>
                           </div>
-                          <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
+                          <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2 py-0.5 rounded-md border border-primary/20 shrink-0">
                             Real-Time
                           </span>
                         </div>
