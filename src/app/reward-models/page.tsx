@@ -245,30 +245,11 @@ export default function RewardModelsPage() {
         </div>
       </section>
 
-      {/* Consultation Section */}
-      <section className="py-16 md:py-20 bg-card/50 border-y border-border/50 relative overflow-hidden">
-        <div className="container container-large relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <Eyebrow className="justify-center">Consultation</Eyebrow>
-            <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl text-foreground">
-              Not Sure Which Model Fits Your Business?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-              That is exactly what our discovery call is for. We have worked with businesses across direct selling, memberships, subscriptions, ambassador programs, and partner networks. We will help you design a compensation model that works for your people and your growth goals.
-            </p>
-            <div className="pt-2">
-              <Button size="lg" className="rounded-full px-8" asChild>
-                <a href="/contact">Schedule a Discovery Call</a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* Unified Pre-Footer CTA */}
       <CtaBand
         containerClass="container-large"
-        title="Your Compensation Model, Built Exactly the Way You Need It."
-        description="No two businesses reward their people the same way. Let's talk about yours."
+        title="Not Sure Which Model Fits Your Business?"
+        description="We will help you design a compensation model that works for your people and your growth goals. No two businesses reward their people the same way — let's talk about yours."
       />
     </>
   );
