@@ -4,6 +4,7 @@ import CtaBand from "@/components/sections/cta-band";
 import FeaturesShowcase from "@/components/sections/features-showcase";
 import HomeHero from "@/components/sections/home-hero";
 import HowItWorks from "@/components/sections/how-it-works";
+import ProblemStatement from "@/components/sections/problem-statement";
 import WhosItFor from "@/components/sections/whos-it-for";
 import WhyChoose from "@/components/sections/why-choose";
 
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <>
       <HomeHero className="page-top-padding !pb-12 md:!pb-16" containerClass="container-large" heroImage={null} />
+      <ProblemStatement containerClass="container-large" />
       <WhosItFor containerClass="container-large" />
       <HowItWorks containerClass="container-large" />
       <FeaturesShowcase containerClass="container-large" />
