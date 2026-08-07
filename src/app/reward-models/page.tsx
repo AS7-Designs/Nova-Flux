@@ -151,7 +151,7 @@ export default function RewardModelsPage() {
                       {model.items.map((item: string, i: number) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs"
                         >
                           <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                           <span className="leading-snug">{item}</span>
@@ -203,7 +203,7 @@ export default function RewardModelsPage() {
                         ].map((item, i) => (
                           <div
                             key={i}
-                            className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                            className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs"
                           >
                             <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                             <span>{item}</span>
@@ -215,7 +215,7 @@ export default function RewardModelsPage() {
 
                   {/* Right Visual Graphic - Full Height Alignment */}
                   <div className="lg:col-span-5 flex flex-col">
-                    <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-7 flex flex-col justify-between w-full h-full">
+                    <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-background/90 dark:bg-card/60 p-6 md:p-7 flex flex-col justify-between w-full h-full shadow-2xs">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -224,7 +224,7 @@ export default function RewardModelsPage() {
                               Collective Volume Engine
                             </span>
                           </div>
-                          <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2.5 py-1 rounded border border-border">
+                          <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
                             Automated
                           </span>
                         </div>
@@ -234,7 +234,7 @@ export default function RewardModelsPage() {
                         </p>
                       </div>
 
-                      <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs">
+                      <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between text-xs">
                         <span className="text-muted-foreground">Volume Sync:</span>
                         <span className="font-semibold text-primary">Instant & Audit-Ready</span>
                       </div>

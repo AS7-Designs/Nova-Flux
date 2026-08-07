@@ -227,11 +227,11 @@ export default function WorkWithUsPage() {
                 </div>
 
                 <div className="pt-4 border-t border-border/50 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs">
                     <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                     <span>Scoped Before Build</span>
                   </div>
-                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground">
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs">
                     <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                     <span>Zero Hidden Fees</span>
                   </div>
@@ -255,10 +255,10 @@ export default function WorkWithUsPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50 space-y-1">
+                  <div className="p-3.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 space-y-1 shadow-2xs">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-foreground">Annual Maintenance Contract (AMC)</span>
-                      <span className="text-[10px] font-mono font-semibold tracking-wider uppercase text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
+                      <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
                         Planned Coverage
                       </span>
                     </div>
@@ -267,10 +267,10 @@ export default function WorkWithUsPage() {
                     </p>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-muted/40 border border-border/50 space-y-1">
+                  <div className="p-3.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 space-y-1 shadow-2xs">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-foreground">Hourly Support</span>
-                      <span className="text-[10px] font-mono font-semibold tracking-wider uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+                      <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-foreground bg-muted px-2 py-0.5 rounded border border-border">
                         On-Demand
                       </span>
                     </div>
