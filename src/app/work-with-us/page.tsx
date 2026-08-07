@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 
 import CtaBand from "@/components/sections/cta-band";
 import { Eyebrow } from "@/components/elements/eyebrow";
+import { FluxDotGrid } from "@/components/elements/flux-dot-grid";
 import { FluxWavePattern } from "@/components/elements/flux-wave-pattern";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/data/config";
-import { CheckCircle2, Clock, Headphones, Layers, ShieldCheck, Sparkles } from "lucide-react";
+import { CheckCircle2, Clock, Code2, Compass, Headphones, HeartHandshake, Layers, MessageSquare, Rocket, ShieldCheck, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Work With Us",
@@ -34,29 +35,39 @@ const WHAT_YOU_BRING = [
 
 const ENGAGEMENT_STEPS = [
   {
-    step: "Step 1",
+    step: "01",
+    eyebrow: "01 — DISCOVERY",
+    icon: MessageSquare,
     title: "Discovery",
-    description: "We start with a conversation. We listen to your business model, your compensation structure, and your goals. We ask the right questions and make sure we understand exactly what you need before anything is built.",
+    description: "We start with a conversation. We listen to your business model, your compensation structure, and your goals. We ask the right questions before anything is built.",
   },
   {
-    step: "Step 2",
+    step: "02",
+    eyebrow: "02 — SCOPING",
+    icon: Compass,
     title: "Scoping",
-    description: "Based on the discovery conversation, we define the scope of your platform: what modules are needed, how your commission logic will be configured, what integrations are required, and what the delivery timeline looks like.",
+    description: "Based on discovery, we define the exact scope of your platform: required modules, commission logic configuration, integrations, and delivery timeline.",
   },
   {
-    step: "Step 3",
-    title: "Build",
-    description: "We build your platform configured specifically around your business. Your brand, your commission rules, your member journey. Not a template. Not a generic setup.",
+    step: "03",
+    eyebrow: "03 — BUILD",
+    icon: Code2,
+    title: "Custom Build",
+    description: "We build your platform configured specifically around your business. Your brand, your commission rules, and your member journey — never a generic template.",
   },
   {
-    step: "Step 4",
-    title: "Review and Launch",
-    description: "Before going live, we walk you through the platform together. You review, we refine, and we launch when you are ready.",
+    step: "04",
+    eyebrow: "04 — LAUNCH",
+    icon: Rocket,
+    title: "Review & Launch",
+    description: "Before going live, we walk through the platform together. You review, we refine, and we launch seamlessly when your team is 100% ready.",
   },
   {
-    step: "Step 5",
+    step: "05",
+    eyebrow: "05 — PARTNERSHIP",
+    icon: HeartHandshake,
     title: "We Stay With You",
-    description: "Going live is not the end. We stay involved to make sure the platform performs, grows with your business, and adapts as your needs evolve.",
+    description: "Launch is just the beginning. We stay involved to ensure the platform performs, scales with your business, and adapts as your needs evolve over time.",
   },
 ];
 
@@ -104,24 +115,79 @@ export default function WorkWithUsPage() {
 
       {/* How the Engagement Works */}
       <section className="section-padding relative">
-        <div className="container container-large">
-          <div className="mx-auto max-w-3xl space-y-3 text-center mb-12">
+        <div className="container container-large space-y-12">
+          <div className="mx-auto max-w-3xl space-y-3 text-center">
             <Eyebrow className="justify-center">Process</Eyebrow>
-            <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">How the Engagement Works</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
+              How the Engagement Works
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              A structured, transparent 5-step process from initial conversation to long-term operational success.
+            </p>
           </div>
 
-          <div className="space-y-6 max-w-4xl mx-auto">
-            {ENGAGEMENT_STEPS.map((step, idx) => (
-              <Card key={idx} className="border-border/60 bg-card p-6 md:p-8 flex flex-col md:flex-row items-start gap-6 hover:shadow-md transition-all">
-                <div className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold shrink-0">
-                  {step.step}
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                  <p className="text-muted-foreground text-base leading-relaxed">{step.description}</p>
-                </div>
-              </Card>
-            ))}
+          <div className="space-y-6">
+            {/* Top 3 Steps */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {ENGAGEMENT_STEPS.slice(0, 3).map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40 space-y-6"
+                  >
+                    <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                          <Icon className="size-5" />
+                        </div>
+                        <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground uppercase">
+                          {item.eyebrow}
+                        </span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom 2 Steps */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {ENGAGEMENT_STEPS.slice(3, 5).map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40 space-y-6"
+                  >
+                    <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                          <Icon className="size-5" />
+                        </div>
+                        <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground uppercase">
+                          {item.eyebrow}
+                        </span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
