@@ -78,13 +78,10 @@ export default function WhosItFor({
                   item.span
                 )}
               >
-                <div className="flex items-center justify-between gap-4 mb-6">
+                <div className="mb-6">
                   <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
                     <Icon className="size-5" />
                   </div>
-                  <span className="text-[11px] font-medium px-3 py-1 rounded-full bg-accent/80 text-foreground border border-border/50">
-                    {item.badge}
-                  </span>
                 </div>
 
                 <div className="space-y-2 mt-auto">
