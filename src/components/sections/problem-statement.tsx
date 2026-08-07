@@ -21,7 +21,7 @@ export default function ProblemStatement({
         <div className="mx-auto max-w-4xl space-y-4 text-center">
           <Eyebrow className="justify-center">The Difference</Eyebrow>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight">
-            Most Platforms Were Built for Everyone. <span className="text-primary font-bold">Not for You.</span>
+            Most Platforms Were Built for Everyone. <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent font-bold">Not for You.</span>
           </h2>
           <p className="text-muted-foreground text-base md:text-xl leading-relaxed max-w-3xl mx-auto pt-2">
             Direct selling businesses are not generic businesses. Your growth depends on people, and the way you manage, reward, and scale those people is specific to how your business works.
@@ -57,7 +57,7 @@ export default function ProblemStatement({
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-primary/30 bg-primary/5 p-6 md:p-8 flex flex-col justify-between transition-colors">
+          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-primary/30 bg-gradient-to-br from-[#1164F0]/10 via-[#0090FF]/5 to-transparent p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/50">
             <div className="space-y-4">
               <div className="size-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
                 <CheckCircle2 className="size-5" />

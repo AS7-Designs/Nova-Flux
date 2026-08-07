@@ -76,7 +76,10 @@ export default function RewardModelsPage() {
           <div className="mx-auto max-w-4xl space-y-4 text-center">
             <Eyebrow className="justify-center">Flexible Compensation</Eyebrow>
             <h1 className="text-4xl font-bold tracking-tight lg:text-6xl text-foreground">
-              Reward Your People the Way Your Business Was Designed To.
+              Reward Your People{" "}
+              <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
+                the Way Your Business Was Designed To.
+              </span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
               Every business rewards its network differently. NovaDirect is built to handle that complexity — whatever your compensation model looks like — accurately, automatically, and exactly the way you designed it.
@@ -100,59 +103,58 @@ export default function RewardModelsPage() {
       {/* Reward Models Bento Grid */}
       <section className="section-padding relative">
         <div className="container container-large space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <Eyebrow className="justify-center">Tailored Compensation</Eyebrow>
+          <div className="mx-auto max-w-3xl space-y-3 text-center">
+            <Eyebrow className="justify-center">Supported Architectures</Eyebrow>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
-              How Do You Want to Reward Your Network?
+              Explore Our Core Reward Architectures
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              Select from proven reward mechanics or combine them to craft a unique compensation model tailored to your business goals.
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              From single-tier commissions to complex multi-level performance pools.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {REWARD_MODELS.map((model, idx) => {
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            {REWARD_MODELS.slice(0, 4).map((model, idx) => {
               const Icon = model.icon;
               return (
                 <div
                   key={idx}
-                  className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40"
+                  className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 flex flex-col justify-between transition-colors hover:border-primary/40 space-y-6"
                 >
                   <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
-                  {/* Top Bar */}
-                  <div className="relative z-10 flex items-center justify-between mb-4">
-                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                      <Icon className="size-5" />
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                        <Icon className="size-5" />
+                      </div>
+                      <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
+                        {model.eyebrow}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground">
-                      {model.eyebrow}
-                    </span>
+
+                    <div className="space-y-2">
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                        {model.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {model.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Body Content */}
-                  <div className="relative z-10 space-y-2.5 mb-6">
-                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight">
-                      {model.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {model.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Items */}
-                  <div className="relative z-10 mt-auto pt-5 border-t border-border/50 space-y-3">
+                  <div className="relative z-10 pt-4 border-t border-border/50 space-y-3 mt-auto">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
                       What this looks like in NovaDirect:
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {model.items.map((item, i) => (
+                      {model.items.map((item: string, i: number) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/40 border border-border/50 text-xs font-medium text-foreground"
                         >
                           <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                          <span>{item}</span>
+                          <span className="leading-snug">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -162,7 +164,7 @@ export default function RewardModelsPage() {
             })}
 
             {/* Model 05 - Full Width Hero Bento Card */}
-            <div className="lg:col-span-2 relative overflow-hidden rounded-2xl md:rounded-3xl border border-border/70 bg-card text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/40">
+            <div className="lg:col-span-2 relative overflow-hidden rounded-2xl md:rounded-3xl border border-primary/30 bg-gradient-to-br from-[#1164F0]/10 via-[#0090FF]/5 to-transparent text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/50">
               <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
 
               <div className="relative z-10 space-y-6">
