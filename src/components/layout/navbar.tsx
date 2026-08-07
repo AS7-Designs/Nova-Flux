@@ -62,77 +62,82 @@ const Navbar = () => {
         "lg:fixed lg:inset-x-0 lg:top-[var(--banner-height,0px)] lg:translate-y-[18px]",
       )}
     >
-      <div className="lg:bg-popover/90 relative z-50 container flex h-[var(--header-height)] items-center justify-between px-6 lg:h-[54px] lg:rounded-full lg:border lg:border-border/70 lg:backdrop-blur-md">
-        <Logo className="shrink-0" />
+      <div className="lg:bg-popover/90 relative z-50 container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] h-[var(--header-height)] items-center px-4 lg:px-7 lg:h-[58px] lg:rounded-full lg:border lg:border-border/70 lg:backdrop-blur-md">
+        <div className="flex items-center justify-start">
+          <Logo className="shrink-0" />
+        </div>
 
-        <NavigationMenu viewport={false} className="hidden lg:block mx-auto">
-          <NavigationMenuList className="gap-1 md:gap-2">
-            {NAV_LINKS.map((item) => (
-              <NavigationMenuItem key={item.label}>
-                <NavigationMenuLink
-                  href={item.href}
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    navLinkClassName,
-                    "px-4 text-xs md:text-sm font-medium transition-colors hover:text-foreground",
-                    pathname === item.href && "bg-accent font-semibold text-foreground"
-                  )}
-                  suppressHydrationWarning
-                >
-                  {item.label}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="hidden lg:flex items-center justify-center">
+          <NavigationMenu viewport={false}>
+            <NavigationMenuList className="gap-1">
+              {NAV_LINKS.map((item) => (
+                <NavigationMenuItem key={item.label}>
+                  <NavigationMenuLink
+                    href={item.href}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      navLinkClassName,
+                      "px-4 text-xs md:text-sm font-medium transition-colors hover:text-foreground rounded-full",
+                      pathname === item.href && "bg-accent font-semibold text-foreground"
+                    )}
+                    suppressHydrationWarning
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
-        <div className="hidden items-center justify-end gap-3 lg:flex shrink-0">
+        <div className="hidden lg:flex items-center justify-end gap-3">
           <ThemeToggle />
           {ACTION_BUTTONS.map((button) => (
             <Button
               key={button.label}
-              size="default"
+              size="sm"
               variant={button.variant}
-              className="rounded-full font-semibold px-5 text-xs md:text-sm"
+              className="rounded-full font-semibold px-4.5 text-xs md:text-sm h-9"
               asChild
             >
               <Link href={button.href}>{button.label}</Link>
             </Button>
           ))}
         </div>
-        <div className="flex items-center gap-2 lg:hidden lg:gap-4">
-            <ThemeToggle />
-            <button
-              className="text-muted-foreground relative flex size-8 rounded-sm border lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <div className={cn("absolute top-1/2 left-1/2 block w-4 -translate-x-1/2 -translate-y-1/2")}>
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
-                    isMenuOpen ? "rotate-45" : "-translate-y-1.5",
-                  )}
-                ></span>
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
-                    isMenuOpen ? "opacity-0" : "",
-                  )}
-                ></span>
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
-                    isMenuOpen ? "-rotate-45" : "translate-y-1.5",
-                  )}
-                ></span>
-              </div>
-            </button>
-          </div>
+
+        <div className="flex items-center justify-end gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="text-muted-foreground relative flex size-8 rounded-sm border lg:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <div className={cn("absolute top-1/2 left-1/2 block w-4 -translate-x-1/2 -translate-y-1/2")}>
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  isMenuOpen ? "rotate-45" : "-translate-y-1.5",
+                )}
+              ></span>
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  isMenuOpen ? "opacity-0" : "",
+                )}
+              ></span>
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute block h-0.25 w-full rounded-full bg-current transition duration-500 ease-in-out",
+                  isMenuOpen ? "-rotate-45" : "translate-y-1.5",
+                )}
+              ></span>
+            </div>
+          </button>
         </div>
+      </div>
 
       {/* Mobile menu */}
       <div
