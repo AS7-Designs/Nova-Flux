@@ -74,7 +74,7 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-semibold tracking-tight text-center mb-8">Two Ways to Connect</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-              <div className="rounded-2xl md:rounded-3xl border border-border/70 bg-card p-6 md:p-8 flex flex-col justify-between h-full text-center transition-colors hover:border-primary/40 space-y-4">
+              <div className="rounded-2xl md:rounded-3xl border border-primary/30 bg-gradient-to-br from-[#1164F0]/10 via-[#0090FF]/5 to-transparent p-6 md:p-8 flex flex-col justify-between h-full text-center transition-colors hover:border-primary/50 space-y-4">
                 <div className="space-y-3">
                   <h3 className="text-xl font-semibold text-foreground">Book a Discovery Call</h3>
                   <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
@@ -83,7 +83,7 @@ export default function ContactPage() {
                 </div>
                 <div className="mt-auto pt-4">
                   <Button size="lg" className="rounded-full" asChild>
-                    <a href="#demo-form">Schedule a Discovery Call →</a>
+                    <a href="#demo-form">Schedule a Discovery Call &rarr;</a>
                   </Button>
                 </div>
               </div>

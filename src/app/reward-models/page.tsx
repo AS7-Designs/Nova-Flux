@@ -75,7 +75,7 @@ export default function RewardModelsPage() {
         <div className="container container-large relative z-10">
           <div className="mx-auto max-w-4xl space-y-4 text-center">
             <Eyebrow className="justify-center">Flexible Compensation</Eyebrow>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-6xl text-foreground">
+            <h1 className="text-4xl leading-[1.1] font-medium tracking-tighter md:text-5xl lg:text-6xl text-foreground">
               Reward Your People{" "}
               <span className="bg-gradient-to-r from-[#0055FE] via-[#0080FF] to-[#1164F0] dark:from-[#5EEBFC] dark:via-[#0090FF] dark:to-[#1164F0] bg-clip-text text-transparent">
                 the Way Your Business Was Designed To.
@@ -211,7 +211,9 @@ export default function RewardModelsPage() {
                         ))}
                       </div>
                     </div>
-                              {/* Right Visual Graphic - Full Height Alignment */}
+                  </div>
+
+                  {/* Right Visual Graphic - Full Height Alignment */}
                   <div className="lg:col-span-5 flex flex-col">
                     <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-background/90 dark:bg-card/60 p-6 md:p-7 flex flex-col justify-between w-full h-full shadow-2xs">
                       <div className="space-y-3">
@@ -237,7 +239,7 @@ export default function RewardModelsPage() {
                         <span className="font-semibold text-primary">Instant & 100% Accurate</span>
                       </div>
                     </div>
-                  </div>        </div>
+                  </div>
                 </div>
               </div>
             </div>

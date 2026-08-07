@@ -80,8 +80,11 @@ export default function WorkWithUsPage() {
         <div className="container container-large relative z-10">
           <div className="mx-auto max-w-4xl space-y-4 text-center">
             <Eyebrow className="justify-center">Engagement Model</Eyebrow>
-            <h1 className="text-4xl font-bold tracking-tight lg:text-6xl text-foreground">
-              A Platform Built Around You. A Partner Invested in Your Growth.
+            <h1 className="text-4xl leading-[1.1] font-medium tracking-tighter md:text-5xl lg:text-6xl text-foreground">
+              A Platform Built Around You.{" "}
+              <span className="bg-gradient-to-r from-[#0055FE] via-[#0080FF] to-[#1164F0] dark:from-[#5EEBFC] dark:via-[#0090FF] dark:to-[#1164F0] bg-clip-text text-transparent">
+                Invested in Your Growth.
+              </span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
               NovaDirect is not an off-the-shelf product you activate with a credit card. Every implementation is built specifically around your business, your compensation model, and your brand.
