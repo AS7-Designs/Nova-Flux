@@ -104,7 +104,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <ContactDetails containerClass="container-large" items={getContactDetailItems()} />
       <ContactFaq
         containerClass="container-large"
         title="Frequently asked questions"
