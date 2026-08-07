@@ -146,7 +146,7 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
             {layer.bullets.map((bullet, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs font-medium text-foreground transition-colors hover:bg-muted/70"
+                className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs transition-colors hover:border-primary/40"
               >
                 <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                 <span>{bullet}</span>
@@ -157,12 +157,12 @@ function LayerCard({ layer }: { layer: (typeof layers)[0] }) {
 
         {/* Right Feature Graphic */}
         <div className="lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 flex flex-col justify-between min-h-[240px] md:min-h-[280px]">
+          <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-background/90 dark:bg-card/60 p-6 md:p-8 flex flex-col justify-between min-h-[240px] md:min-h-[280px] shadow-2xs">
             <div className="flex items-center justify-between mb-3">
               <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                 <Icon className="size-5" />
               </div>
-              <span className="text-[9px] font-mono font-semibold tracking-widest uppercase text-muted-foreground bg-background px-2 py-0.5 rounded border border-border">
+              <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
                 {layer.badgeText}
               </span>
             </div>

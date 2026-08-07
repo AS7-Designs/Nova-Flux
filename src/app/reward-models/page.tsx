@@ -211,9 +211,7 @@ export default function RewardModelsPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Right Visual Graphic - Full Height Alignment */}
+                              {/* Right Visual Graphic - Full Height Alignment */}
                   <div className="lg:col-span-5 flex flex-col">
                     <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-background/90 dark:bg-card/60 p-6 md:p-7 flex flex-col justify-between w-full h-full shadow-2xs">
                       <div className="space-y-3">
@@ -221,25 +219,25 @@ export default function RewardModelsPage() {
                           <div className="flex items-center gap-2">
                             <ShieldCheck className="size-4 text-primary" />
                             <span className="text-xs font-bold text-foreground uppercase tracking-wider">
-                              Collective Volume Engine
+                              Automated Calculation Engine
                             </span>
                           </div>
                           <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
-                            Automated
+                            Real-Time
                           </span>
                         </div>
 
                         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                          Real-time calculation across infinite downline levels with automated capping, compression, and pool distribution.
+                          Automatically tracks sales generated across your entire team, calculating commissions and performance bonuses with 100% accuracy.
                         </p>
                       </div>
 
                       <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground">Volume Sync:</span>
-                        <span className="font-semibold text-primary">Instant & Audit-Ready</span>
+                        <span className="text-muted-foreground">Commission Calculations:</span>
+                        <span className="font-semibold text-primary">Instant & 100% Accurate</span>
                       </div>
                     </div>
-                  </div>
+                  </div>        </div>
                 </div>
               </div>
             </div>
