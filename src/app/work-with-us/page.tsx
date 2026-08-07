@@ -284,27 +284,44 @@ export default function WorkWithUsPage() {
                 </div>
               </div>
 
-              {/* Card 3: Multidisciplinary Team Note (Full Width) */}
-              <div className="lg:col-span-2 rounded-2xl md:rounded-3xl border border-primary/30 bg-primary/5 p-6 md:p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="size-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
-                    <Sparkles className="size-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground">What is Behind NovaDirect</h3>
-                    <p className="text-xs text-muted-foreground">Comprehensive multi-domain execution</p>
-                  </div>
-                </div>
-                <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-                  Every NovaDirect client benefits from more than a software team. Behind the platform sits a multidisciplinary organisation with capabilities across software development, branding, UI/UX design, digital marketing, and AI transformation.
-                </p>
-                <div className="pt-2 flex flex-wrap gap-2">
-                  {["Software Development", "Branding & UI/UX", "Digital Marketing", "AI Transformation"].map((chip, i) => (
-                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-border text-xs font-medium text-foreground">
-                      <CheckCircle2 className="size-3 text-primary" />
-                      {chip}
+              {/* Card 3: Multidisciplinary Team Note (Full Width Hero Bento Card) */}
+              <div className="lg:col-span-2 relative overflow-hidden rounded-2xl md:rounded-3xl border border-primary/30 bg-gradient-to-br from-[#1164F0]/10 via-[#0090FF]/5 to-transparent text-card-foreground p-6 md:p-8 lg:p-10 transition-colors hover:border-primary/50 space-y-6">
+                <FluxDotGrid className="opacity-[0.03] dark:opacity-[0.05]" />
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                      <Sparkles className="size-5" />
+                    </div>
+                    <span className="text-[11px] font-mono font-semibold tracking-wider text-muted-foreground uppercase">
+                      03 — MULTIDISCIPLINARY ENGINE
                     </span>
-                  ))}
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight">
+                      What is Behind NovaDirect
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-3xl">
+                      Every NovaDirect client benefits from more than a software team. Behind the platform sits a multidisciplinary organisation with capabilities across software development, branding, UI/UX design, digital marketing, and AI transformation.
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-border/50 space-y-3">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                      Core Multidisciplinary Capabilities:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
+                      {["Software Development", "Branding & UI/UX", "Digital Marketing", "AI Transformation"].map((chip, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-background/80 dark:bg-muted/40 border border-border/80 text-xs font-semibold text-foreground shadow-2xs"
+                        >
+                          <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                          <span className="leading-snug">{chip}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
