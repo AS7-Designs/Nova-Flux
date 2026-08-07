@@ -21,7 +21,7 @@ export default function ProblemStatement({
         <div className="mx-auto max-w-4xl space-y-4 text-center">
           <Eyebrow className="justify-center">The Difference</Eyebrow>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight">
-            Most Platforms Were Built for Everyone. <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent font-bold">Not for You.</span>
+            Most Platforms Were Built for Everyone. <span className="bg-gradient-to-r from-[#0055FE] via-[#0080FF] to-[#1164F0] dark:from-[#5EEBFC] dark:via-[#0090FF] dark:to-[#1164F0] bg-clip-text text-transparent font-bold">Not for You.</span>
           </h2>
           <p className="text-muted-foreground text-base md:text-xl leading-relaxed max-w-3xl mx-auto pt-2">
             Direct selling businesses are not generic businesses. Your growth depends on people, and the way you manage, reward, and scale those people is specific to how your business works.

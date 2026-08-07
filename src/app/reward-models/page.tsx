@@ -77,7 +77,7 @@ export default function RewardModelsPage() {
             <Eyebrow className="justify-center">Flexible Compensation</Eyebrow>
             <h1 className="text-4xl font-bold tracking-tight lg:text-6xl text-foreground">
               Reward Your People{" "}
-              <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0055FE] via-[#0080FF] to-[#1164F0] dark:from-[#5EEBFC] dark:via-[#0090FF] dark:to-[#1164F0] bg-clip-text text-transparent">
                 the Way Your Business Was Designed To.
               </span>
             </h1>

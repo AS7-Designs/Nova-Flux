@@ -142,7 +142,7 @@ export default function HomeHero({
               className="text-4xl leading-[1.15] font-semibold tracking-tighter md:text-5xl lg:text-6xl"
             >
               Built for Businesses That Grow{" "}
-              <span className="bg-gradient-to-r from-[#5EEBFC] via-[#0090FF] to-[#1164F0] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0055FE] via-[#0080FF] to-[#1164F0] dark:from-[#5EEBFC] dark:via-[#0090FF] dark:to-[#1164F0] bg-clip-text text-transparent">
                 Through People.
               </span>
             </motion.h1>
