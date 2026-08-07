@@ -62,7 +62,7 @@ const Navbar = () => {
         "lg:fixed lg:inset-x-0 lg:top-[var(--banner-height,0px)] lg:translate-y-[18px]",
       )}
     >
-      <div className="lg:bg-popover/90 relative z-50 container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] h-[var(--header-height)] items-center px-4 lg:pl-6 lg:pr-2 lg:h-[54px] lg:rounded-full lg:border lg:border-border/70 lg:backdrop-blur-md">
+      <div className="lg:bg-popover/90 relative z-50 container grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center p-4 lg:p-6 lg:rounded-full lg:border lg:border-border/70 lg:backdrop-blur-md">
         <div className="flex items-center justify-start">
           <Logo className="shrink-0" />
         </div>
